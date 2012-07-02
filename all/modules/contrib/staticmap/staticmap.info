@@ -1,0 +1,15 @@
+; $Id$
+name = Static Map
+description = Provides a static map for geofield.
+core = 7.x
+php = 5.2
+dependencies[] = ctools
+
+; Files
+files[] = staticmap.module
+; Information added by drupal.org packaging script on 2011-05-11
+version = "7.x-1.0-alpha2"
+core = "7.x"
+project = "staticmap"
+datestamp = "1305078116"
+
