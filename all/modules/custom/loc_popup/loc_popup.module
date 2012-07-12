@@ -7,11 +7,8 @@
 
 function loc_popup_init() {
 
-  $is_postcode_needed =
-    ! user_is_logged_in()  &&  empty($_SESSION['loc_popup']['postcode']);
-
-  if ( $is_postcode_needed ) {
-    // loc_popup_show_overlay();
+  if ( ! user_is_logged_in()  &&  ! empty($_SESSION['loc_popup']['postcode']) ) {
+    dsm( 'postcode: ' . $_SESSION['loc_popup']['postcode'] );
   }
 }
 
