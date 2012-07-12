@@ -1,0 +1,3 @@
+name = Localitee popup
+description = "Show a modal overlay asking for postcode/login/signup."
+core = 7.x
