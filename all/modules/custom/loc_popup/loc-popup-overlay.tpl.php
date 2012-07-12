@@ -46,34 +46,33 @@
     			<div class="span6 members">
 	    			
 	    			<h3><?php echo t('Members') ?></h3>
-	    			<p><?php echo t('Log in to Localitee') ?></p>
-	    			<form action="" method="" name="loginform" id="loginform">
+                                <p><?php echo t('Log in to Localitee') ?></p>
+<?php
+echo drupal_render( $login_form );
+	    			//<form action="" method="" name="loginform" id="loginform">
 		    			
-		    			<label for="username">Username</label>
-		    			<input type="text" id="username" name="username"  placeholder="Enter username"/>
+		    			//<label for="username">Username</label>
+		    			//<input type="text" id="username" name="username"  placeholder="Enter username"/>
 		    			
-		    			<label for="password">Password</label>
-		    			<input type="password" id="password" name="password"  placeholder="Enter password"/>
+		    			//<label for="password">Password</label>
+		    			//<input type="password" id="password" name="password"  placeholder="Enter password"/>
 		    			
-		    			<input type="submit" value="Login" name="submit" class="btn btn-success btn-large"/>
+		    			//<input type="submit" value="Login" name="submit" class="btn btn-success btn-large"/>
 		    			
-		    			<div>
+		    			//<div>
 			    			
-			    			<label for="remember" class="checkbox"><?php echo t('Keep me logged in') ?>
-				    			<input type="checkbox" name="remember" id="remember"/>
-				    		</label>
+			    		//	<label for="remember" class="checkbox">Keep me logged in
+				    	//		<input type="checkbox" name="remember" id="remember"/>
+				    	//	</label>
 
-				    	</div>
-				    	
-				    	
+				    	//</div>
 		    			
-		    			
+                                //</form>
+                                ?>
 		    			<ul>
-		    				<li><a href=""><?php echo t('Forgot your password?') ?></a></li>
-		    				<li><a href=""><?php echo t('Join Localitee') ?></a></li>
+		    				<li><a href="user/password"><?php echo t('Forgot your password?') ?></a></li>
+		    				<li><a href="user/register"><?php echo t('Join Localitee') ?></a></li>
 		    			</ul>
-		    			
-	    			</form>
 	    			
     			</div>
     		
@@ -85,7 +84,7 @@
     				<h3><?php echo t('Join Localitee') ?></h3>
     				<div class="alert">
     					<p><strong><?php echo t('Holy guacamole!') ?></strong> <?php echo t('Information about joining Localitee here!') ?></p>
-    					<p><a href="" class="btn btn-success btn-large"><?php echo t('Join Localitee') ?></a></p>
+    					<p><a href="user/register" class="btn btn-success btn-large"><?php echo t('Join Localitee') ?></a></p>
     				</div>
     			</div>
     		
