@@ -44,6 +44,10 @@ function loc_popup_block_view( $delta ) {
 
     if ( loc_popup_is_postcode_input_required() ) {
 
+      // Set postcode so that links from overlay can be followed without
+      // the overlay popping up again.
+      $_SESSION['loc_popup']['postcode'] = '<none>';
+
       return array(
         'content' => theme( 'loc_popup_overlay', array(
           'close_button' => drupal_get_form( 'loc_popup_close_button' ),
@@ -73,7 +77,8 @@ function loc_popup_close_button() {
 
 function loc_popup_close_button_submit() {
 
-  $_SESSION['loc_popup']['postcode'] = '<none>';
+  // EMPTY - Nothing to do here
+  // Postcode was set to '<none>' before overlay was displayed.
 }
 
 function loc_popup_postcode_form( $form, &$form_state ) {
