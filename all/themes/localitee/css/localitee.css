@@ -1,0 +1,492 @@
+
+.greentext {
+    color: #78AE39;
+}
+.orangetext {
+    color: #FF6A30;
+}
+.alignleft {
+    float: left;
+    margin: 0 10px 10px 0;
+}
+.alignright {
+    float: right;
+    margin: 0 0 10px 10px;
+}
+img.alignleft, img.alignright {
+    border: 1px solid #CCCCCC;
+    padding: 2px;
+}
+.offscreen {
+    height: 1px;
+    left: -10000px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    width: 1px;
+}
+body {
+    background-color: #F2F2E9;
+    color: #545454;
+    font-family: "Droid Sans",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0;
+    padding-top: 10px;
+}
+a {
+    -moz-transition: all 0.3s ease 0s;
+    color: #FF6A30;
+    text-decoration: none;
+}
+a:hover {
+    color: #78AE39;
+    text-decoration: underline;
+}
+.navbar {
+    border-bottom: 6px solid #FF6A30;
+    border-top: 1px solid #ECECEC;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.navbar-inner {
+    background: none repeat scroll 0 0 #FFFFFF;
+    padding: 0;
+}
+.navbar-inner #branding {
+    padding-bottom: 10px;
+}
+.navbar-inner .logo {
+    color: #78AE39 !important;
+    font-size: 30px;
+    line-height: 30px;
+    padding-left: 3px;
+    padding-top: 10px;
+}
+.navbar-inner .logo a {
+    color: #78AE39 !important;
+}
+.navbar-inner .logo a:hover {
+    text-decoration: none;
+}
+.navbar-inner .logo span {
+    color: #FF6A30;
+}
+.navbar-inner .postcode {
+    color: #FF6A30;
+    font-size: 60px;
+    line-height: 60px;
+    white-space: nowrap;
+}
+.navbar .nav .active > a {
+    background-color: #FF6A30;
+}
+.navbar .nav .active > a:hover {
+    background-color: #FF6A30 !important;
+}
+.navbar .nav li a {
+    border-radius: 4px 4px 0 0;
+    color: #545454;
+    margin-right: 1px;
+    padding: 8px 15px;
+}
+.navbar .nav li > a:hover {
+    background-color: #FFFFFF !important;
+    color: #FF6A30;
+}
+.nav-collapse .nav > li > a:hover {
+    background-color: #FF6A30 !important;
+    color: #FFFFFF;
+}
+.navbar .dropdown-menu li a i {
+    margin-right: 5px;
+}
+.navbar .btn-navbar {
+    background-color: #FF6A30;
+    background-image: -moz-linear-gradient(center top , #333333, #222222);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.075);
+    display: none;
+    float: right;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 7px 10px;
+}
+.navbar .btn-navbar:hover, .navbar .btn-navbar:active, .navbar .btn-navbar.active, .navbar .btn-navbar.disabled, .navbar .btn-navbar[disabled] {
+    background-color: #FF6A30;
+}
+.navbar .btn-navbar:active, .navbar .btn-navbar.active {
+}
+.navbar .btn-navbar .icon-bar {
+    background-color: #F5F5F5;
+    border-radius: 1px 1px 1px 1px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    display: block;
+    height: 2px;
+    width: 18px;
+}
+.btn-navbar .icon-bar + .icon-bar {
+    margin-top: 3px;
+}
+.navbar #login_box {
+    background-clip: padding-box;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    padding: 5px 5px 10px;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 240px;
+}
+.navbar #login_box h4 {
+    color: #78AE39;
+    margin-bottom: 10px;
+}
+.navbar #tab.login_btn {
+    float: left;
+}
+.navbar #login_box_content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    float: left;
+    width: 236px;
+}
+.navbar #login_form {
+    margin: 9px 0 0 9px;
+}
+.navbar #login_box:after {
+    border-bottom: 6px solid white;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    content: "";
+    display: inline-block;
+    left: 201px;
+    position: absolute;
+    top: -6px;
+}
+.navbar #login_box:before {
+    border-bottom: 7px solid rgba(0, 0, 0, 0.2);
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    content: "";
+    display: inline-block;
+    left: 200px;
+    position: absolute;
+    top: -7px;
+}
+.row-fluid.advancedsearch {
+    background: none repeat scroll 0 0 white;
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 10px;
+    padding-top: 20px;
+}
+.searchbox {
+    margin: 0 auto;
+    width: 400px;
+}
+#searchform ul {
+    margin: 0;
+    padding: 0;
+}
+#searchform li {
+    float: left;
+    list-style-type: none;
+    margin-right: 10px;
+}
+#searchform li label {
+    margin-right: 5px;
+}
+#searchform li label, #searchform li input[type="checkbox"] {
+    float: left;
+}
+#searchform input[type="text"] {
+    margin-bottom: 0;
+    padding: 10px;
+    width: 300px;
+}
+#searchform input[type="submit"] {
+    padding: 10px;
+}
+.advancedsearch {
+    margin-top: 5px;
+}
+#advancedsearch p {
+    font-weight: bold;
+    margin-top: 5px;
+}
+#searchresults ol {
+    clear: left;
+    margin: 0 9px 0 0;
+}
+#searchresults ol li {
+    border-bottom: 1px dotted #CCCCCC;
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding: 0 0 10px 40px;
+}
+#searchresults ol li.event {
+    background: url("../img/icon-calendar.png") no-repeat scroll 2px 2px transparent;
+}
+#searchresults ol li.discussion {
+    background: url("../img/icon-discussion.png") no-repeat scroll 2px 2px transparent;
+}
+#searchresults ol li.news {
+    background: url("../img/icon-document.png") no-repeat scroll 2px 2px transparent;
+}
+#searchresults ol li.business {
+    background: url("../img/icon-credit.png") no-repeat scroll 2px 2px transparent;
+}
+.dropdown-menu li a:hover, .dropdown-menu li:hover {
+    background: none repeat scroll 0 0 #FF6A30;
+}
+.btn-success {
+    background-color: #78AE39;
+    background-image: -moz-linear-gradient(center top , #78AE39, #699A30);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+.btn-success:hover, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled] {
+    background-color: #699A30;
+}
+.btn-success:active, .btn-success.active {
+}
+.box {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #CCCCCC;
+    clear: left;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+.box h2, .col2box h2 {
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 10px;
+}
+.col2box {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #CCCCCC;
+    clear: left;
+    float: left;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+.col2box .featured {
+    float: left;
+    padding-right: 10px;
+    width: 50%;
+}
+.box h2 a, .col2box h2 a {
+    color: #545454;
+}
+.box h2 a:hover, .col2box h2 a:hover {
+    color: #FF6A30;
+}
+.box.mpu img {
+    border: 1px solid #CCCCCC;
+    padding: 2px;
+}
+.box.mpu img:hover {
+    opacity: 0.8;
+}
+.col2box .featured img {
+    border: 1px solid #CCCCCC;
+    float: right;
+    margin: 0 0 10px 10px;
+    max-width: 50%;
+    padding: 2px;
+}
+.col2box .top-news {
+    border-left: 1px solid #CCCCCC;
+    float: left;
+    padding-left: 10px;
+    width: 40%;
+}
+.col2box .top-news li {
+    margin-bottom: 5px;
+}
+.top-news ul li span, .events ul li span, .business ul li span, .discussion ul li span {
+    display: block;
+}
+.top-news ul, .events ul, .business ul, .discussion ul {
+    margin: 10px 0;
+    padding: 0;
+}
+.top-news ul li {
+    list-style-type: none;
+    padding: 0 0 0 30px;
+}
+.events ul li, .business ul li, .discussion ul li {
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding: 0 0 0 40px;
+}
+.top-news ul li {
+    background: url("../img/icon-document.png") no-repeat scroll 2px 2px transparent;
+}
+.events ul li {
+    background: url("../img/icon-calendar.png") no-repeat scroll 2px 2px transparent;
+}
+.business ul li {
+    background: url("../img/icon-credit.png") no-repeat scroll 2px 2px transparent;
+}
+.discussion ul li {
+    background: url("../img/icon-discussion.png") no-repeat scroll 2px 2px transparent;
+}
+.tab-content ul {
+    margin: 0 0 10px;
+}
+.tab-content ul li {
+    border-bottom: 1px dotted #CCCCCC;
+    list-style-type: none;
+    margin: 0 0 10px;
+    padding: 0 0 10px 30px;
+}
+.tab-content li.event {
+    background: url("../img/icon-calendar-small.png") no-repeat scroll 2px 2px transparent;
+}
+.tab-content li.business {
+    background: url("../img/icon-credit-small.png") no-repeat scroll 2px 2px transparent;
+}
+.tab-content li.discussion {
+    background: url("../img/icon-discussion-small.png") no-repeat scroll 2px 2px transparent;
+}
+.tab-content li.news {
+    background: url("../img/icon-document-small.png") no-repeat scroll 2px 2px transparent;
+}
+.box .carousel {
+    margin-bottom: 0;
+}
+.box .carousel .item {
+}
+.carousel-nav {
+    font-size: 50px;
+    margin-top: 20px;
+}
+footer {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-top: 3px solid #FF6A30;
+    padding: 20px;
+}
+#frontModal .modal-header h3 {
+    color: #78AE39;
+}
+#frontModal .modal-header h3 span {
+    color: #FF6A30;
+}
+#loginform div {
+    margin: 10px 0;
+}
+.modal-body .guests h3, .modal-body .members h3, .modal-body .join h3 {
+    color: #78AE39;
+}
+.business-logo {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    float: right;
+    margin: 0 0 10px 10px;
+    padding: 5px;
+}
+.businessprofile h1 {
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+.businessprofile h2 {
+    border-bottom: medium none;
+}
+.businessprofile .map {
+    border: 1px solid #CCCCCC;
+    height: 302px;
+    margin: 10px 0;
+    padding: 2px;
+    width: 302px;
+}
+.businessprofile h4.marker {
+    background: url("../img/icon-marker-green.png") no-repeat scroll 2px 23px transparent;
+    clear: both;
+    line-height: 30px;
+    margin-bottom: 5px;
+    padding: 20px 0 0 30px;
+}
+.contact-details ul {
+    margin: 0;
+    padding: 0;
+}
+.contact-details li {
+    line-height: 25px;
+    list-style-type: none;
+    padding: 0 0 0 30px;
+}
+.contact-details, .address {
+    float: left;
+}
+.contact-details {
+    border-left: 1px solid #CCCCCC;
+    padding-left: 20px;
+    width: 50%;
+}
+.address {
+    padding-right: 10px;
+    width: 40%;
+}
+.contact-details li.phone {
+    background: url("../img/icon-phone-green.png") no-repeat scroll 2px 2px transparent;
+}
+.contact-details li.email {
+    background: url("../img/icon-envelope-green.png") no-repeat scroll 2px 2px transparent;
+}
+.contact-details li.twitter {
+    background: url("../img/icon-twitter-green.png") no-repeat scroll 2px 2px transparent;
+}
+.contact-details li.facebook {
+    background: url("../img/icon-facebook-green.png") no-repeat scroll 2px 2px transparent;
+}
+.contact-details li.website {
+    background: url("../img/icon-link-green.png") no-repeat scroll 2px 2px transparent;
+}
+.navbar-inner #branding {
+    margin-top: 40px;
+}
+.searchbox {
+    width: 250px;
+}
+#searchform input[type="text"] {
+    width: 150px;
+}
+.col2box .featured {
+    float: none;
+    padding-right: 0;
+    width: 100%;
+}
+.col2box .top-news {
+    border-left: medium none;
+    float: none;
+    padding-left: 0;
+    width: 100%;
+}
+.address {
+    float: none;
+    padding-right: 0;
+    width: 100%;
+}
+.contact-details {
+    border-left: medium none;
+    float: none;
+    padding-left: 0;
+    width: 100%;
+}
+.navbar #login_box {
+    right: -30px;
+}
+.navbar .postcode {
+    font-size: 40px;
+}
+.navbar-inner {
+    padding: 20px;
+}
+

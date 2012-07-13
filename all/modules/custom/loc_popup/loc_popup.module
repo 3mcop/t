@@ -5,13 +5,6 @@
  * Show a modal overlay asking for postcode/login/signup
  */
 
-function loc_popup_init() {
-
-  if ( ! user_is_logged_in()  &&  ! empty($_SESSION['loc_popup']['postcode']) ) {
-    dsm( 'postcode: ' . $_SESSION['loc_popup']['postcode'] );
-  }
-}
-
 function loc_popup_theme() {
   return array(
     'loc_popup_overlay' => array(
@@ -19,7 +12,6 @@ function loc_popup_theme() {
         'close_button' => NULL,
         'postcode_form' => NULL,
         'login_form' => NULL,
-        'register_form' => NULL,
       ),
       'template' => 'loc-popup-overlay',
     ),
@@ -34,20 +26,23 @@ function loc_popup_block_info() {
   );
 }
 
+function loc_popup_is_postcode_input_required() {
+  return ( ! user_is_logged_in()  &&
+    empty($_SESSION['loc_popup']['postcode']) );
+}
+
 function loc_popup_block_view( $delta ) {
 
   switch ( $delta ) {
 
   case 'postcode' :
-    $is_postcode_needed =
-      ! user_is_logged_in()  &&  empty($_SESSION['loc_popup']['postcode']);
 
-    if ( $is_postcode_needed ) {
+    if ( ! user_is_logged_in()  &&
+      ! empty($_SESSION['loc_popup']['postcode']) ) {
+      dsm( 'postcode: ' . $_SESSION['loc_popup']['postcode'] );
+    }
 
-      drupal_add_js(
-        'jQuery(document).ready(function(){ jQuery("#frontModal").modal({keyboard:false}) });',
-        array('type' => 'inline', 'scope' => 'footer')
-      );
+    if ( loc_popup_is_postcode_input_required() ) {
 
       return array(
         'content' => theme( 'loc_popup_overlay', array(
@@ -55,7 +50,6 @@ function loc_popup_block_view( $delta ) {
           'postcode_form' => drupal_get_form( 'loc_popup_postcode_form' ),
           //'login_form' => drupal_get_form( 'loc_popup_login_form' ),
           'login_form' => drupal_get_form( 'user_login' ),
-          'register_form' => drupal_get_form( 'loc_popup_register_form' ),
         ) ),
       );
     }
@@ -78,6 +72,8 @@ function loc_popup_close_button() {
 }
 
 function loc_popup_close_button_submit() {
+
+  $_SESSION['loc_popup']['postcode'] = '<none>';
 }
 
 function loc_popup_postcode_form( $form, &$form_state ) {
@@ -102,11 +98,3 @@ function loc_popup_postcode_form_submit( $form, &$form_state ) {
 function loc_popup_form_user_login_alter( &$form, &$form_state ) {
   // Make any changes to user login form here
 }
-
-function loc_popup_register_form( $form, &$form_state ) {
-}
-
-function loc_popup_register_form_submit( $form, &$form_state ) {
-
-}
-
