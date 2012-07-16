@@ -2,3 +2,5 @@ default/files
 default/settings.php
 *.swp
 *~
+
+.DS_Store
