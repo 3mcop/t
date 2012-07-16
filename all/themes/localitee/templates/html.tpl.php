@@ -89,7 +89,11 @@
   <!-- Le javascript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <?php print $scripts; ?>
+  <?php // print $scripts; ?>
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/system.js"></script>
 
 </body>
 </html>
