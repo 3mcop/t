@@ -6,3 +6,8 @@ function localitee_preprocess_loc_popup_overlay() {
     array('type' => 'inline', 'scope' => 'footer')
   );
 }
+
+function localitee_preprocess_page(){
+	drupal_add_js(drupal_get_path('theme', 'localitee') . '/js/bootstrap.js');	
+	drupal_add_js(drupal_get_path('theme', 'localitee') . '/js/system.js');	
+}
