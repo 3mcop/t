@@ -89,7 +89,7 @@
                 <div id="login_box">
                     <div id="login_box_content">
                     
-                         <?php print drupal_render($login_form); ?>
+                         <?php print render($login_form); ?>
 
                     </div>
                 </div>
@@ -128,7 +128,7 @@
         
           <div class="searchbox" role="search">
             
-          	 <?php print $page['search']; ?>
+          	 <?php print redner($page['search']); ?>
             
           </div><!-- /.searchbox -->
         </div><!-- /.span12 -->
