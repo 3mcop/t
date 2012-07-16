@@ -7,8 +7,8 @@ stylesheets[all][] = css/bootstrap.css
 stylesheets[all][] = css/bootstrap-responsive.css
 stylesheets[all][] = css/localitee.css
 
-script[] = js/bootstrap.js
-script[] = js/system.js
+scripts[] = js/bootstrap.js
+scripts[] = js/system.js
 
 regions[header] = Header
 regions[help] = Help
