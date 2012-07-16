@@ -86,6 +86,16 @@
               <i class="icon-cog icon-white"></i>  Sign in
               <span class="caret"></span>
             </a>
+            <?php if user_is_logged_in(): ?>
+             <ul class="dropdown-menu">
+              <li><a href="/user"><i class="icon-user"></i> Your profile</a></li>
+              <li class="divider"></li>
+              <li><a href="/user"><i class="icon-map-marker"></i> Postcode radius: <span><?php print $postcode_radius ?></span></a></li>
+              <li class="divider"></li>
+              <li><a href="/user/logout"><i class="icon-lock"></i> Sign Out</a></li>
+            </ul>
+            <?php else: ?>
+
                 <div id="login_box">
                     <div id="login_box_content">
                     
@@ -93,6 +103,8 @@
 
                     </div>
                 </div>
+                
+            <?php endif; ?>
           </div> 
           
           <div id="branding">
