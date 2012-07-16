@@ -128,7 +128,7 @@
         
           <div class="searchbox" role="search">
             
-          	 <?php print $search; ?>
+          	 <?php print $page['search']); ?>
             
           </div><!-- /.searchbox -->
         </div><!-- /.span12 -->
