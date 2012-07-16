@@ -86,7 +86,7 @@
               <i class="icon-cog icon-white"></i>  Sign in
               <span class="caret"></span>
             </a>
-            <?php if user_is_logged_in(): ?>
+            <?php if (user_is_logged_in()): ?>
              <ul class="dropdown-menu">
               <li><a href="/user"><i class="icon-user"></i> Your profile</a></li>
               <li class="divider"></li>
@@ -100,6 +100,11 @@
                     <div id="login_box_content">
                     
                          <?php print render($login_form); ?>
+                         
+                         <ul>
+		    				<li><a href="user/password"><?php echo t('Forgot your password?') ?></a></li>
+		    				<li><a href="user/register"><?php echo t('Join Localitee') ?></a></li>
+		    			</ul>
 
                     </div>
                 </div>
