@@ -89,7 +89,7 @@
                 <div id="login_box">
                     <div id="login_box_content">
                     
-                         <?php print $login_form; ?>
+                         <?php print drupal_render($login_form); ?>
 
                     </div>
                 </div>
