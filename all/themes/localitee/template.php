@@ -12,7 +12,7 @@ function localitee_preprocess_page(){
 	drupal_add_js(drupal_get_path('theme', 'localitee') . '/js/system.js');	
 }
 
-function localitee_form_user_login_block_alter(&$form, &$form_state) {
-	
-	dsm($form);
+function localitee_form_user_login_alter(&$form, &$form_state) {
+  $form['actions']['submit']['#attributes'] =
+    array( 'class' => array( 'btn', 'btn-success' ) );
 }
