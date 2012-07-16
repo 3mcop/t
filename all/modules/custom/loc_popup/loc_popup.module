@@ -113,6 +113,9 @@ function loc_popup_preprocess_page( &$variables ) {
     $variables['postcode'] = t( '(Set postcode)' );
   }
 
+  $radius = 2;
+  $variables['postcode_radius'] = $radius . t( ' miles' );
+
   if ( ! user_is_logged_in() ) {
     $variables['login_form'] = drupal_get_form( 'user_login' );
   }
