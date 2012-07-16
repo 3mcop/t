@@ -83,7 +83,7 @@
           
           <div class="btn-group pull-right account">
             <a class="btn btn-success dropdown-toggle login_btn" data-toggle="dropdown" href="#" id="tab">
-              <i class="icon-cog"></i>  Sign in
+              <i class="icon-cog icon-white"></i>  Sign in
               <span class="caret"></span>
             </a>
                 <div id="login_box">
