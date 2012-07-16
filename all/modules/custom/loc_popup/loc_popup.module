@@ -46,7 +46,7 @@ function loc_popup_block_view( $delta ) {
 
       // Set postcode so that links from overlay can be followed without
       // the overlay popping up again.
-      $_SESSION['loc_popup']['postcode'] = '(No postcode)';
+      $_SESSION['loc_popup']['postcode'] = '(Set postcode)';
 
       return array(
         'content' => theme( 'loc_popup_overlay', array(
@@ -110,8 +110,10 @@ function loc_popup_preprocess_page( &$variables ) {
     $variables['postcode'] = $_SESSION['loc_popup']['postcode'];
   }
   else {
-    $variables['postcode'] = t( '(No postcode)' );
+    $variables['postcode'] = t( '(Set postcode)' );
   }
 
-  $variables['login_form'] = drupal_get_form( 'user_login' );
+  if ( ! user_is_logged_in() ) {
+    $variables['login_form'] = drupal_get_form( 'user_login' );
+  }
 }
