@@ -46,7 +46,7 @@ function loc_popup_block_view( $delta ) {
 
       // Set postcode so that links from overlay can be followed without
       // the overlay popping up again.
-      $_SESSION['loc_popup']['postcode'] = '<none>';
+      $_SESSION['loc_popup']['postcode'] = '(No postcode)';
 
       return array(
         'content' => theme( 'loc_popup_overlay', array(
