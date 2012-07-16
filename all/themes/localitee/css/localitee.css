@@ -297,6 +297,14 @@ border-bottom-color: rgba(0, 0, 0, 0.2);
 content: '';
 }
 
+.form-actions
+{
+background-color: #fff !important;
+border-top: none !important;
+margin: 0 !important;
+padding: 0 !important;
+}
+
 
 /* Main search */
 
