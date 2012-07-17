@@ -96,8 +96,8 @@
   <?php print $scripts; ?>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-  <script src="<?php print drupal_get_path('theme', 'localitee')?>/js/bootstrap.js"></script>
-  <script src="<?php print drupal_get_path('theme', 'localitee')?>/js/system.js"></script>
+  <script src="/<?php print drupal_get_path('theme', 'localitee')?>/js/bootstrap.js"></script>
+  <script src="/<?php print drupal_get_path('theme', 'localitee')?>/js/system.js"></script>
 
 </body>
 </html>
