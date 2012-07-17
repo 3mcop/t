@@ -63,7 +63,7 @@
  */
 ?>
 
-<li class="<?php print $result['type']; ?>">
+<li class="<?php print $node_type; ?>">
 
   <h4><a href="<?php print $url; ?>"><?php print $title; ?></a></h4>
     <?php if ($snippet): ?>
