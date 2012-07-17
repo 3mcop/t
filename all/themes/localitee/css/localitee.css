@@ -305,6 +305,11 @@ margin: 0 !important;
 padding: 0 !important;
 }
 
+.navbar #login_box input[type='submit']
+{
+margin-bottom: 10px;
+}
+
 
 /* Main search */
 
