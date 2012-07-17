@@ -427,7 +427,7 @@ background: #ff6a30;
 
 /* buttons */
 
-.btn-success {
+.btn-success, .form-submit {
   background-color: #78ae39;
   *background-color: #68992e;
   background-image: -ms-linear-gradient(top, #78ae39, #699a30);
@@ -447,13 +447,20 @@ background: #ff6a30;
 .btn-success:active,
 .btn-success.active,
 .btn-success.disabled,
-.btn-success[disabled] {
+.btn-success[disabled], 
+.form-submit:hover,
+.form-submit:active,
+.form-submit.active,
+.form-submit.disabled,
+.form-submit[disabled] {
   background-color: #699a30;
   *background-color: #499249;
 }
 
 .btn-success:active,
-.btn-success.active {
+.btn-success.active, 
+.form-submit:active,
+.form-submit.active {
   background-color: #408140 \9;
 }
 
