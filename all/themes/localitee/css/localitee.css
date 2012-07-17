@@ -715,6 +715,14 @@ background: url('../img/icon-document-small.png') no-repeat 2px 2px;
 margin-bottom: 10px;
 }
 
+.top-news .views-row
+{
+margin: 0 0 10px 0;
+padding: 0 0 10px 30px;
+border-bottom: dotted 1px #ccc;
+background: url('../img/icon-document-small.png') no-repeat 2px 2px;
+}
+
 .span4 .view-events .views-row
 {
 margin: 0 0 10px 0;
