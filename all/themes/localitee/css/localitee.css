@@ -708,6 +708,13 @@ background: url('../img/icon-discussion-small.png') no-repeat 2px 2px;
 background: url('../img/icon-document-small.png') no-repeat 2px 2px;
 }
 
+/*views rows */
+
+.views-row
+{
+margin-bottom: 10px;
+}
+
 /* Home page carousel */
 
 .box .carousel
