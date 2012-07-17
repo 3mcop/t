@@ -726,7 +726,7 @@ background: url('../img/icon-calendar.png') no-repeat 2px 2px;
 #block-views-recent-discussions-block .views-row
 {
 margin: 0 0 10px 0;
-padding: 0 0 10px 30px;
+padding: 0 0 10px 40px;
 border-bottom: dotted 1px #ccc;
 background: url('../img/icon-discussion.png') no-repeat 2px 2px;
 }
@@ -734,7 +734,7 @@ background: url('../img/icon-discussion.png') no-repeat 2px 2px;
 #block-views-featured-businesses-block .views-row
 {
 margin: 0 0 10px 0;
-padding: 0 0 10px 30px;
+padding: 0 0 10px 40px;
 border-bottom: dotted 1px #ccc;
 background: url('../img/icon-credit.png') no-repeat 2px 2px;
 }
