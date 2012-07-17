@@ -64,7 +64,6 @@
 ?>
 
 <li class="<?php print $info_split['type']; ?>">
-<?php print '<pre>'. check_plain(print_r($info_split, 1)) .'</pre>'; ?>
 
   <h4><a href="<?php print $url; ?>"><?php print $title; ?></a></h4>
     <?php if ($snippet): ?>
