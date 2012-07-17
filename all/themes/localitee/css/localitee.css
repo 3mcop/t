@@ -345,7 +345,7 @@ margin-right: 5px;
 float: left;
 }
 
-#searchform input[type="text"]
+#searchform input.custom-search-box
 {
 margin-bottom: 0;
 padding: 10px;
@@ -355,8 +355,9 @@ display: block !important;
 
 #searchform .form-type-select label
 {
-font-weight: bold;
-margin-right: 10px;
+font-weight: bold !important;
+margin-right: 10px !important;
+
 }
 
 #searchform input[type="submit"]
