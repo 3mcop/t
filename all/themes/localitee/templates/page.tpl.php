@@ -222,20 +222,11 @@
             
       </div><!-- /.row-fluid -->
 
-      <footer>
-      
-      	 <div class="row-fluid">
-      	 
-      	 	 <div class="span12">
-	      	 
-	      	 	      
-	      	 	<?php print render($page['footer']); ?>
-	      	 
-	      	 
-	      	 </div><!-- /.span12 -->
-      	      	 
-      	 </div>
-        
-      </footer>
 
     </div><!--/.fluid-container-->
+    
+      <footer>      	 
+	      	 	      
+	      	 	<?php print render($page['footer']); ?>
+        
+      </footer>
