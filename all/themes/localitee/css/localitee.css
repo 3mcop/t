@@ -903,7 +903,7 @@ background: url('../img/icon-link-green.png') no-repeat 2px 2px;
 	}
 	
 	.searchbox input[type="text"]	{
-	width: 150px;
+	width: 150px !important;
 	}
 	
 	.col2box .featured
