@@ -62,7 +62,7 @@
  * @see template_process()
  */
 ?>
-<li class="<?php print $classes; ?>"<?php print $attributes; ?>>
+<li class="<?php print $info_split['type']; ?>">
   <h4 class="title"<?php print $title_attributes; ?>>
     <a href="<?php print $url; ?>"><?php print $title; ?></a>
   </h4>
