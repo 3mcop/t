@@ -472,6 +472,21 @@ background: #ff6a30;
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+.form-submit:hover {
+  color: #333333;
+  text-decoration: none;
+  background-color: #e6e6e6;
+  *background-color: #d9d9d9;
+  /* Buttons in IE7 don't get borders, so darken on hover */
+
+  background-position: 0 -15px;
+  -webkit-transition: background-position 0.1s linear;
+     -moz-transition: background-position 0.1s linear;
+      -ms-transition: background-position 0.1s linear;
+       -o-transition: background-position 0.1s linear;
+          transition: background-position 0.1s linear;
+}
+
 .form-submit
 {
 color: #ffffff;
@@ -515,6 +530,8 @@ text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 .form-submit.active {
   background-color: #408140 \9;
 }
+
+
 
 
 
