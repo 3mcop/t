@@ -24,6 +24,8 @@
 <div id="searchresults">
 <?php if ($search_results): ?>
 
+<?php print $localitee_search_totals; ?>
+
   <?php print $pager; ?>
 
   <ol class="search-results <?php print $module; ?>-results">

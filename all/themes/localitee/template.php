@@ -31,3 +31,24 @@ function localitee_page_alter() {
     drupal_set_title('');
   }
 }
+
+function localitee_preprocess_search_results(&$variables) {
+
+  // define the number of results being shown on a page
+  $itemsPerPage = 10;
+
+  // get the current page
+  $currentPage = $_REQUEST['page']+1;
+
+  // get the total number of results from the $GLOBALS
+  $total = $GLOBALS['pager_total_items'][0];
+    
+  // perform calculation
+  $start = 10*$currentPage-9;
+  $end = $itemsPerPage * $currentPage;
+  if ($end>$total) $end = $total;
+    
+  // set this html to the $variables
+  $variables['localitee_search_totals'] = "Displaying $start - $end of $total results";
+
+}
