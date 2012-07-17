@@ -57,9 +57,9 @@
   <title><?php print $head_title; ?></title>
     <!-- Le styles -->
   <?php print $styles; ?>
-  <link href="<?php print drupal_get_path('theme', 'localitee')?>/css/bootstrap.css" rel="stylesheet"/>
-  <link href="<?php print drupal_get_path('theme', 'localitee')?>/css/localitee.css" rel="stylesheet"/>
-  <link href="<?php print drupal_get_path('theme', 'localitee')?>/css/bootstrap-responsive.css" rel="stylesheet"/>
+  <link href="/<?php print drupal_get_path('theme', 'localitee')?>/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/<?php print drupal_get_path('theme', 'localitee')?>/css/localitee.css" rel="stylesheet"/>
+  <link href="/<?php print drupal_get_path('theme', 'localitee')?>/css/bootstrap-responsive.css" rel="stylesheet"/>
   
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono|Droid+Serif' rel='stylesheet' type='text/css'/>
 
