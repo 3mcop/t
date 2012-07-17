@@ -158,7 +158,9 @@
       <div class="row-fluid" id="maincontent" role="main">
           
             <div class="span8">
-            
+
+               <?php // Added these tabs back because they are needed to administer nodes (edit/delete/clone/etc).
+               if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>            
             
                <?php if (drupal_is_front_page()): ?>
             
