@@ -349,7 +349,14 @@ float: left;
 {
 margin-bottom: 0;
 padding: 10px;
-width: 300px;
+width: 350px;
+display: block;
+}
+
+#searchform .form-type-select label
+{
+font-weight: bold;
+margin-right: 10px;
 }
 
 #searchform input[type="submit"]
