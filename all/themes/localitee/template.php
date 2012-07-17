@@ -1,5 +1,14 @@
 <?php
 
+function localitee_preprocess_search_result( &$variables ) {
+
+  $variables['node_type'] = drupal_html_class( $variables['result']['type'] );
+
+  // This line (when uncommented) shows the variables on-screen in a nice
+  // expandable display
+  //dsm ( $variables );
+}
+
 function localitee_preprocess_loc_popup_overlay() {
   drupal_add_js(
     'jQuery(document).ready(function(){ jQuery("#frontModal").modal({keyboard:false}) });',
