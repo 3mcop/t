@@ -83,7 +83,9 @@
           
           <div class="btn-group pull-right account">
             <a class="btn btn-success dropdown-toggle login_btn" data-toggle="dropdown" href="#" id="tab">
-              <i class="icon-cog icon-white"></i>  Sign in
+              <i class="icon-cog icon-white"></i>
+              <?php if (user_is_logged_in()): ?>  Sign out
+              <?php else: ?> Sign in<?php endif; ?>
               <span class="caret"></span>
             </a>
             <?php if (user_is_logged_in()): ?>
