@@ -98,6 +98,16 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
   <script src="/<?php print drupal_get_path('theme', 'localitee')?>/js/bootstrap.js"></script>
   <script src="/<?php print drupal_get_path('theme', 'localitee')?>/js/system.js"></script>
+  
+   <?php if (drupal_is_front_page()): ?>
+  <script>
+		    
+		    $('.carousel').carousel({
+			    interval: 5000
+			})
+	    
+    </script>
+    <?php endif; ?>
 
 </body>
 </html>
