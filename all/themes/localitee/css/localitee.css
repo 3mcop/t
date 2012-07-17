@@ -345,7 +345,7 @@ margin-right: 5px;
 float: left;
 }
 
-#searchform input[type="text"]
+.searchbox input[type="text"]
 {
 margin-bottom: 0;
 padding: 10px;
@@ -353,13 +353,14 @@ width: 350px !important;
 display: block !important;
 }
 
-#searchform .form-type-select label
+.searchbox .form-type-select label
 {
-font-weight: bold;
-margin-right: 10px;
+font-weight: bold !important;
+margin-right: 10px !important;
+
 }
 
-#searchform input[type="submit"]
+.searchbox input[type="submit"]
 {
 padding: 10px;
 }
