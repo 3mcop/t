@@ -82,24 +82,26 @@
           
           
           <div class="btn-group pull-right account">
-            <a class="btn btn-success dropdown-toggle login_btn" data-toggle="dropdown" href="#" id="tab">
-              <i class="icon-cog icon-white"></i>
-              <?php if (user_is_logged_in()): ?>  Your account
-              <?php else: ?> Sign in<?php endif; ?>
-              <span class="caret"></span>
+          <?php if (user_is_logged_in()): ?>
+          
+          	<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#" id="tab">
+          		<i class="icon-cog icon-white"></i> Your account
+          		<span class="caret"></span>
             </a>
-            <?php if (user_is_logged_in()): ?>
-             <ul class="dropdown-menu">
+            <ul class="dropdown-menu">
               <li><a href="/user"><i class="icon-user"></i> Your profile</a></li>
               <li class="divider"></li>
               <li><a href="/user"><i class="icon-map-marker"></i> Postcode radius: <span><?php print $postcode_radius ?></span></a></li>
               <li class="divider"></li>
               <li><a href="/user/logout"><i class="icon-lock"></i> Sign Out</a></li>
             </ul>
-            <?php else: ?>
-
-                <div id="login_box">
-                    <div id="login_box_content">
+          <?php else: ?>
+          	<a class="btn btn-success dropdown-toggle login_btn" data-toggle="dropdown" href="#" id="tab">
+          		<i class="icon-cog icon-white"></i> Sign in
+                <span class="caret"></span>
+            </a>
+            <div id="login_box">
+                <div id="login_box_content">
                     
                          <?php print render($login_form); ?>
                          
@@ -108,8 +110,8 @@
 		    				<li><a href="user/register"><?php echo t('Join Localitee') ?></a></li>
 		    			</ul>
 
-                    </div>
-                </div>
+                 </div>
+             </div>
                 
             <?php endif; ?>
           </div> 
