@@ -2573,7 +2573,7 @@ button.close {
   -webkit-appearance: none;
 }
 
-.btn {
+.btn, .form-submit {
   display: inline-block;
   *display: inline;
   padding: 4px 10px 4px;
@@ -2616,13 +2616,20 @@ button.close {
 .btn:active,
 .btn.active,
 .btn.disabled,
-.btn[disabled] {
+.btn[disabled],
+.form-submit:hover,
+.form-submit:active,
+.form-submit.active,
+.form-submit.disabled,
+.form-submit[disabled] {
   background-color: #e6e6e6;
   *background-color: #d9d9d9;
 }
 
 .btn:active,
-.btn.active {
+.btn.active,
+.form-submit:active,
+.form-submit.active {
   background-color: #cccccc \9;
 }
 
@@ -2630,7 +2637,8 @@ button.close {
   *margin-left: 0;
 }
 
-.btn:hover {
+.btn:hover, 
+.form-submit:hover {
   color: #333333;
   text-decoration: none;
   background-color: #e6e6e6;
@@ -2645,14 +2653,17 @@ button.close {
           transition: background-position 0.1s linear;
 }
 
-.btn:focus {
+.btn:focus, 
+.form-submit:focus {
   outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 
 .btn.active,
-.btn:active {
+.btn:active, 
+.form-submit.active,
+.form-submit:active {
   background-color: #e6e6e6;
   background-color: #d9d9d9 \9;
   background-image: none;
@@ -2663,7 +2674,9 @@ button.close {
 }
 
 .btn.disabled,
-.btn[disabled] {
+.btn[disabled], 
+.form-submit.disabled,
+.form-submit[disabled] {
   cursor: default;
   background-color: #e6e6e6;
   background-image: none;
@@ -2714,7 +2727,10 @@ button.close {
 .btn-info,
 .btn-info:hover,
 .btn-inverse,
-.btn-inverse:hover {
+.btn-inverse:hover, 
+.form-submit, 
+.form-submit:hover
+ {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
@@ -2823,7 +2839,7 @@ button.close {
   background-color: #942a25 \9;
 }
 
-.btn-success {
+.btn-success, .form-submit {
   background-color: #5bb75b;
   *background-color: #51a351;
   background-image: -ms-linear-gradient(top, #62c462, #51a351);
@@ -2843,13 +2859,20 @@ button.close {
 .btn-success:active,
 .btn-success.active,
 .btn-success.disabled,
-.btn-success[disabled] {
+.btn-success[disabled], 
+.form-submit:hover,
+.form-submit:active,
+.form-submit.active,
+.form-submit.disabled,
+.form-submit[disabled {
   background-color: #51a351;
   *background-color: #499249;
 }
 
 .btn-success:active,
-.btn-success.active {
+.btn-success.active, 
+.form-submit:active,
+.form-submit.active {
   background-color: #408140 \9;
 }
 
