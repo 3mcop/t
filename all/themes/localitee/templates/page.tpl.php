@@ -172,9 +172,29 @@
 	               	
 	               	<?php endif; ?>
 	               	
-	               	<?php print render($page['content']); ?>	
+	               	
+	               	<div class="box">
+            
+            			<div id="myCarousel" class="carousel slide">
+            			<!-- Carousel items -->
+	            			<div class="carousel-inner">
+	            		
+	            			<?php print render($page['content']); ?>
+	            		
+	            			</div><!-- /.carousel-inner -->
+		            	
+	            			<!-- Carousel nav -->
+	            			<div class="carousel-nav">
+		            			<a class="" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+		            			<a class="" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		            			</div>
+		            		<!-- Carousel nav -->
+		            
+		            	</div><!-- /.carousel -->
+		            
+		            </div><!-- /.box -->
 
-              <?php else: ?>          
+		      <?php else: ?>          
               
               		<div class="box">
               			<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
