@@ -24,7 +24,7 @@
 <div id="searchresults">
 <?php if ($search_results): ?>
 
-<?php print $localitee_search_totals; ?>
+<h4><?php print $localitee_search_totals; ?></h4>
 
   <?php print $pager; ?>
 
