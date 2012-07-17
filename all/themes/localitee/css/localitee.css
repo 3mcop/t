@@ -367,6 +367,7 @@ margin: 0 !important;
 .searchbox input[type="submit"]
 {
 padding: 0px;
+margin-left: 10px;
 }
 
 .advancedsearch
