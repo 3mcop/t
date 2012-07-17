@@ -16,3 +16,9 @@ function localitee_form_user_login_alter(&$form, &$form_state) {
   $form['actions']['submit']['#attributes'] =
     array( 'class' => array( 'btn', 'btn-success' ) );
 }
+
+function localitee_page_alter() {
+  if ( drupal_is_front_page() ) {
+    drupal_set_title('');
+  }
+}
