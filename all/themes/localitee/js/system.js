@@ -1,6 +1,6 @@
 var mouse_is_inside = false;
 
-$(document).ready(function($) {
+jQuery(document).ready(function($) {
     $(".login_btn").click(function() {
         var loginBox = $("#login_box");
         if (loginBox.is(":visible"))
