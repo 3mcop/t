@@ -3,9 +3,9 @@ description = Localitee theme incorporating the Twitter Bootstrap.
 core = 7.x
 ;base theme = bartik
 
-stylesheets[all][] = css/bootstrap.css
-stylesheets[all][] = css/bootstrap-responsive.css
-stylesheets[all][] = css/localitee.css
+;stylesheets[all][] = css/bootstrap.css
+;stylesheets[all][] = css/bootstrap-responsive.css
+;stylesheets[all][] = css/localitee.css
 
 scripts[] = js/bootstrap.js
 scripts[] = js/system.js
