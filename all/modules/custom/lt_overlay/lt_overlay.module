@@ -1,0 +1,111 @@
+<?php
+
+/**
+ * @file
+ * Show a modal overlay asking for postcode/login/signup
+ */
+
+function lt_overlay_theme() {
+  return array(
+    'lt_overlay_overlay' => array(
+      'variables' => array(
+        'close_button' => NULL,
+        'postcode_form' => NULL,
+        'login_form' => NULL,
+      ),
+      'template' => 'loc-popup-overlay',
+    ),
+  );
+}
+
+function lt_overlay_block_info() {
+  return array(
+    'overlay' => array(
+      'info' => 'Localitee overlay',
+    ),
+  );
+}
+
+function lt_overlay_block_view( $delta ) {
+
+  switch ( $delta ) {
+
+  case 'overlay' :
+
+//    if ( ! user_is_logged_in()  &&
+//      ! empty($_SESSION['loc_popup']['postcode']) ) {
+//      dsm( 'postcode: ' . $_SESSION['loc_popup']['postcode'] );
+//    }
+
+    if ( ! postcode_is_stored() ) {
+
+      // Set postcode so that links from overlay can be followed without
+      // the overlay popping up again.
+      postcode_set_guest_postcode( postcode_non_value() );
+
+      return array(
+        'content' => theme( 'lt_overlay_overlay', array(
+          'close_button' => drupal_get_form( 'lt_overlay_close_button' ),
+          'postcode_form' => drupal_get_form( 'lt_overlay_postcode_form' ),
+          //'login_form' => drupal_get_form( 'lt_overlay_login_form' ),
+          'login_form' => drupal_get_form( 'user_login' ),
+        ) ),
+      );
+    }
+  }
+}
+
+function lt_overlay_close_button() {
+
+  return array(
+    // <button type="button" class="close" data-dismiss="modal">×</button>
+    'close-button' => array(
+      '#type' => 'submit',
+      '#value' => 'x',
+      '#attributes' => array(
+        'class' => array( 'close' ),
+        'data-dismiss' => 'modal',
+      ),
+    ),
+  );
+}
+
+function lt_overlay_close_button_submit() {
+
+  // EMPTY - Nothing to do here
+  // Postcode was set to '<none>' before overlay was displayed.
+}
+
+function lt_overlay_postcode_form( $form, &$form_state ) {
+  return array(
+    'postcode' => array(
+      '#type' => 'textfield',
+      '#title' => t('Enter your postcode'),
+      '#attributes' => array( 'placeholder' => t('Enter postcode') ),
+    ),
+    'submit' => array(
+      '#type' => 'submit',
+      '#value' => t('Go'),
+    ),
+  );
+}
+
+function lt_overlay_postcode_form_validate( $form, &$form_state ) {
+  if ( empty( $form_state['values']['postcode'] ) ) {
+    // @todo set error 'a postcode is required'
+  }
+  else {
+    $postcode = $form_state['values']['postcode'];
+    if ( ! postcode_is_real_postcode( $postcode ) ) {
+      // @todo set error 'the postcode given is not valid'
+    }
+  }
+}
+
+function lt_overlay_postcode_form_submit( $form, &$form_state ) {
+   postcode_set_guest_postcode( $form_state['values']['postcode'] );
+}
+
+function lt_overlay_form_user_login_alter( &$form, &$form_state ) {
+  // Make any changes to user login form here
+}

@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * @file
+ * Manage the postcode of both authenticated and anonymous users.
+ */
+
+function postcode_get_postcode() {
+  if ( user_is_logged_in() ) {
+    // Get postcode from global $user
+  }
+  else if ( ! empty($_SESSION['postcode']['postcode']) ) {
+    return $_SESSION['postcode']['postcode'];
+  }
+  else {
+    // No postcode available
+    return '';
+  }
+}
+
+function postcode_get_radius() {
+  if ( user_is_logged_in() ) {
+    // Get radius from global $user
+  }
+  else if ( ! empty($_SESSION['postcode']['radius']) ) {
+    return $_SESSION['postcode']['radius'];
+  }
+  else {
+    // No radius available
+    return '';
+  }
+}
+
+function postcode_exists() {
+  $postcode = postcode_get_postcode();
+  return ! empty( $postcode );
+}
+
+function postcode_non_value() {
+  return t('Guest');
+}
+
+function postcode_is_real_postcode( $pc ) {
+  // @todo validate
+  return TRUE;
+}
+
+function postcode_set_guest_postcode( $pc ) {
+  $_SESSION['postcode']['postcode'] = $pc;
+}
+
+function postcode_preprocess_page( &$variables ) {
+
+  if ( postcode_exists() ) {
+    $variables['postcode'] = postcode_get_postcode();
+  }
+  else {
+    $variables['postcode'] = postcode_non_value();
+  }
+
+  $radius = 2;
+  $variables['postcode_radius'] = $radius . t( ' miles' );
+}
