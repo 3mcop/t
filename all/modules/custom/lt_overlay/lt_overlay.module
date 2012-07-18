@@ -9,6 +9,7 @@ function lt_overlay_theme() {
   return array(
     'lt_overlay' => array(
       'variables' => array(
+        'hidden' => NULL,
         'close_button' => NULL,
         'postcode_form' => NULL,
         'login_form' => NULL,
@@ -26,30 +27,62 @@ function lt_overlay_block_info() {
   );
 }
 
+function lt_overlay_set_inject_visible() {
+  $_SESSION['lt_overlay']['inject'] = TRUE;
+  $_SESSION['lt_overlay']['visible'] = TRUE;
+}
+
+function lt_overlay_set_inject_hidden() {
+  $_SESSION['lt_overlay']['inject'] = TRUE;
+  $_SESSION['lt_overlay']['visible'] = FALSE;
+}
+
+function lt_overlay_set_do_not_inject() {
+  $_SESSION['lt_overlay']['inject'] = FALSE;
+}
+
+function lt_overlay_is_inject() {
+  return ! empty( $_SESSION['lt_overlay']['inject'] );
+}
+
+function lt_overlay_is_visible() {
+  return lt_overlay_is_inject()  &&
+    ! empty( $_SESSION['lt_overlay']['visible'] );
+}
+
 function lt_overlay_block_view( $delta ) {
 
   switch ( $delta ) {
 
   case 'overlay' :
 
-    dsm( 'postcode_exists: ' . postcode_exists() );
-    dsm( 'postcode_non_value: ' . postcode_non_value() );
-    dsm( 'postcode_get_postcode: ' . postcode_get_postcode() );
-
     if ( ! postcode_exists() ) {
-
+      dsm( 'setting inject visible' );
+      lt_overlay_set_inject_visible();
       // Set postcode so that links from overlay can be followed without
       // the overlay popping up again.
       postcode_set_guest_postcode( postcode_non_value() );
+    }
 
-      return array(
+    if ( lt_overlay_is_inject() ) {
+      dsm( 'injecting. visible = ' . lt_overlay_is_visible() );
+
+      $content = array(
         'content' => theme( 'lt_overlay', array(
+          'hidden' => lt_overlay_is_visible(),
           'close_button' => drupal_get_form( 'lt_overlay_close_button' ),
           'postcode_form' => drupal_get_form( 'lt_overlay_postcode_form' ),
           //'login_form' => drupal_get_form( 'lt_overlay_login_form' ),
           'login_form' => drupal_get_form( 'user_login' ),
         ) ),
       );
+
+      if ( lt_overlay_is_visible() ) {
+      dsm( 'setting inject hidden' );
+        lt_overlay_set_inject_hidden();
+      }
+
+      return $content;
     }
   }
 }
@@ -72,10 +105,10 @@ function lt_overlay_close_button() {
 function lt_overlay_close_button_submit() {
 
   // EMPTY - Nothing to do here
-  // Postcode was set to '<none>' before overlay was displayed.
 }
 
 function lt_overlay_postcode_form( $form, &$form_state ) {
+  dsm( 'form fn' );
   return array(
     'postcode' => array(
       '#type' => 'textfield',
@@ -89,7 +122,15 @@ function lt_overlay_postcode_form( $form, &$form_state ) {
   );
 }
 
+/**
+ * Validation only works if the form exists on the subsequent page request
+ * BUT, when injected in to the page, the form always appears as an overlay.
+ * Ideally, we would only see the form if a form error has been made.
+ * Is there a way to detect this? Not before the validation function. But
+ * the validation function is never called without the form appearing.
+ */
 function lt_overlay_postcode_form_validate( $form, &$form_state ) {
+  dsm( 'validating' );
   if ( empty( $form_state['values']['postcode'] ) ) {
     // @todo set error 'a postcode is required'
   }
@@ -101,10 +142,21 @@ function lt_overlay_postcode_form_validate( $form, &$form_state ) {
   }
 }
 
+
 function lt_overlay_postcode_form_submit( $form, &$form_state ) {
-   postcode_set_guest_postcode( $form_state['values']['postcode'] );
+  dsm( 'submitting' );
+  postcode_set_guest_postcode( $form_state['values']['postcode'] );
+      dsm( 'setting do not inject' );
+        lt_overlay_set_do_not_inject();
 }
 
 function lt_overlay_form_user_login_alter( &$form, &$form_state ) {
   // Make any changes to user login form here
+  $form['#submit'][] = 'lt_overlay_user_login_submit';
+}
+
+function lt_overlay_user_login_submit( $form, &$form_state ) {
+
+      dsm( 'setting do not inject' );
+        lt_overlay_set_do_not_inject();
 }

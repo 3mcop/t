@@ -8,6 +8,7 @@
 function postcode_get_postcode() {
   if ( user_is_logged_in() ) {
     // Get postcode from global $user
+    return 'Implement global $user postcode extraction';
   }
   else if ( ! empty($_SESSION['postcode']['postcode']) ) {
     return $_SESSION['postcode']['postcode'];
@@ -47,10 +48,12 @@ function postcode_is_real_postcode( $pc ) {
 
 function postcode_set_guest_postcode( $pc ) {
   $_SESSION['postcode']['postcode'] = $pc;
+  dsm( 'Postcode has been set to ' . $pc );
 }
 
 function postcode_preprocess_page( &$variables ) {
 
+  //dsm( '$_SESSION[postcode][postcode]: ' . $_SESSION['postcode']['postcode'] );
 //  if ( postcode_exists() ) {
     $variables['postcode'] = postcode_get_postcode();
 //  }
