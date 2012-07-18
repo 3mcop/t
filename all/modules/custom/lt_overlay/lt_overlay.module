@@ -7,13 +7,13 @@
 
 function lt_overlay_theme() {
   return array(
-    'lt_overlay_overlay' => array(
+    'lt_overlay' => array(
       'variables' => array(
         'close_button' => NULL,
         'postcode_form' => NULL,
         'login_form' => NULL,
       ),
-      'template' => 'loc-popup-overlay',
+      'template' => 'lt-overlay',
     ),
   );
 }
@@ -32,19 +32,18 @@ function lt_overlay_block_view( $delta ) {
 
   case 'overlay' :
 
-//    if ( ! user_is_logged_in()  &&
-//      ! empty($_SESSION['loc_popup']['postcode']) ) {
-//      dsm( 'postcode: ' . $_SESSION['loc_popup']['postcode'] );
-//    }
+    dsm( 'postcode_exists: ' . postcode_exists() );
+    dsm( 'postcode_non_value: ' . postcode_non_value() );
+    dsm( 'postcode_get_postcode: ' . postcode_get_postcode() );
 
-    if ( ! postcode_is_stored() ) {
+    if ( ! postcode_exists() ) {
 
       // Set postcode so that links from overlay can be followed without
       // the overlay popping up again.
       postcode_set_guest_postcode( postcode_non_value() );
 
       return array(
-        'content' => theme( 'lt_overlay_overlay', array(
+        'content' => theme( 'lt_overlay', array(
           'close_button' => drupal_get_form( 'lt_overlay_close_button' ),
           'postcode_form' => drupal_get_form( 'lt_overlay_postcode_form' ),
           //'login_form' => drupal_get_form( 'lt_overlay_login_form' ),
