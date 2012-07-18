@@ -951,7 +951,7 @@ display: none;
 	padding-right: 0px;
 	}
 	
-	.col2box .featured img
+	#maincontent .col2box .featured img
 	{
 	max-width: 50%;
 	height: auto;
