@@ -996,6 +996,12 @@ display: none;
   .navbar-inner {
     padding: 20px;
   }
+  
+  #maincontent .col2box .featured img
+	{
+	max-width: 50%;
+	height: auto;
+	}
 
 }
 
