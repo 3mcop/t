@@ -944,8 +944,15 @@ background: url('../img/icon-link-green.png') no-repeat 2px 2px;
 	padding-right: 0px;
 	}
 	
+	.col2box .featured img
+	{
+	max-width: 50%;
+	height: auto;
+	}
+	
 	.col2box .top-news
 	{
+	clear: both;
 	float: none;
 	width: 100%;
 	padding-left: 0px;
