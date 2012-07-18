@@ -723,6 +723,11 @@ border-bottom: dotted 1px #ccc;
 background: url('../img/icon-document-small.png') no-repeat 2px 2px;
 }
 
+.top-news .view-footer a.btn
+{
+margin-right: 5px;
+}
+
 .span4 .view-events li
 {
 margin: 0 0 10px 0;
