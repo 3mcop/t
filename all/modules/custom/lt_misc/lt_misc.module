@@ -10,7 +10,17 @@
  */
 function lt_misc_preprocess_page( &$variables ) {
 
+  // Not sure if this is still required.
+  // It was for putting the login form in the "account" management button.
   if ( ! user_is_logged_in() ) {
     $variables['login_form'] = drupal_get_form( 'user_login' );
+  }
+
+  // Does the current page represent a node?
+  if ( !empty( $variables['node']->type ) ) {
+    // Allow the page template to be overriden by one specific to the
+    // type of the current node.
+    $variables['theme_hook_suggestions'][] =
+      'page__node_' . $variables['node']->type;
   }
 }
