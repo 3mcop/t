@@ -102,7 +102,14 @@
   <script src="/<?php print drupal_get_path('theme', 'localitee')?>/js/bootstrap.js"></script>
   <script src="/<?php print drupal_get_path('theme', 'localitee')?>/js/system.js"></script>
   
+   <script>      
+        $('#frontModal').modal({
+            keyboard: false
+            })
+    </script>
+
    <?php if (drupal_is_front_page()): ?>
+
   <script>
 		    
 		    $('.carousel').carousel({
