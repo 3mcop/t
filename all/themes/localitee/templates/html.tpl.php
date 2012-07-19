@@ -104,8 +104,8 @@
   
    <script>      
         $('#frontModal').modal({
-            keyboard: false,
-            backdrop: static
+            backdrop: static,
+            keyboard: false
             
             })
     </script>
