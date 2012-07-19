@@ -61,5 +61,5 @@ function postcode_set_guest_postcode( $pc ) {
 
 function postcode_preprocess_page( &$variables ) {
   $variables['postcode'] = postcode_get_postcode();
-  $variables['postcode_radius'] = $radius . t( ' miles' );
+  $variables['postcode_radius'] = postcode_get_radius() . t( ' miles' );
 }
