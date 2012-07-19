@@ -87,13 +87,16 @@
  
  <?php print $page_top; ?>
  <?php print $page; ?>
- <?php print $page_bottom; ?>
   
   
   <!-- Le javascript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <?php print $scripts; ?>
+
+  <!-- This is where inline JS gets placed. Moved it here to be after core
+       and contrib JS files. -->
+  <?php print $page_bottom; ?>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
   <script src="/<?php print drupal_get_path('theme', 'localitee')?>/js/bootstrap.js"></script>
