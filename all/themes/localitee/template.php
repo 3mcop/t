@@ -16,10 +16,12 @@ function localitee_preprocess_loc_popup_overlay() {
   );
 }
 
+/*
 function localitee_preprocess_page(){
 	drupal_add_js(drupal_get_path('theme', 'localitee') . '/js/bootstrap.js');	
 	drupal_add_js(drupal_get_path('theme', 'localitee') . '/js/system.js');	
 }
+ */
 
 function localitee_form_user_login_alter(&$form, &$form_state) {
   $form['actions']['submit']['#attributes'] =

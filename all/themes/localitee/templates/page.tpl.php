@@ -228,5 +228,73 @@
       <footer>      	 
 	      	 	      
 	      	 	<?php print render($page['footer']); ?>
+	      	 
+<?php
+/**
+ * Localitee postcode/login/signup overlay.
+ *
+ * Variables:
+ *
+ * $lt_overlay['show it?']
+ * $lt_overlay['postcode_form']
+ * $lt_overlay['login_form'] =
+ */
+
+if ( $lt_overlay['show it?'] ):
+?>
+
+<div class="modal" id="frontModal">
+
+        <div class="modal-header">
+
+                <h3><?php echo t('Welcome to Localitee') ?><span>.</span></h3>
+    		
+          <?php print $messages; ?>
+    	</div>
+    	<div class="modal-body">
+	    	<div class="row-fluid">
+    		
+    			<div class="span6 guests">
+    			
+                                <h3><?php echo t('Guests') ?></h3>
+    				<p><?php echo t('Enter your postcode to receive content customised to your region') ?></p>
+
+<?php echo drupal_render( $lt_overlay['postcode_form'] ); ?>
+
+    			</div>
+    			
+    			<div class="span6 members">
+	    			
+	    			<h3><?php echo t('Members') ?></h3>
+                                <p><?php echo t('Log in to Localitee') ?></p>
+<?php echo drupal_render( $lt_overlay['login_form'] ); ?>
+		    			<ul>
+		    				<li><a href="/user/password"><?php echo t('Forgot your password?') ?></a></li>
+		    				<li><a href="/user/register"><?php echo t('Join Localitee') ?></a></li>
+		    			</ul>
+	    			
+    			</div>
+    		
+    		</div>
+    		
+    		<div class="row-fluid">
+    		
+    			<div class="span12 join">
+    				<h3><?php echo t('Join Localitee') ?></h3>
+    				<div class="alert">
+    					<p><strong><?php echo t('Holy guacamole!') ?></strong> <?php echo t('Information about joining Localitee here!') ?></p>
+    					<p><a href="/user/register" class="btn btn-success btn-large"><?php echo t('Join Localitee') ?></a></p>
+    				</div>
+    			</div>
+    		
+    		</div>
+	    </div>
+
+	</div>
+<?php endif; // $lt_overlay['show it?'] ?>
+
+	      	 </div><!-- /.span12 -->
+      	      	 
+      	 </div>
         
       </footer>
