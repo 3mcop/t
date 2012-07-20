@@ -97,7 +97,7 @@
             </ul>
           <?php else: ?>
           
-          		<a class="btn btn-success" href="/user/register"><i class="icon-ok-sign icon-white"></i>&nbsp;&nbsp;Join Localitee</a><a class="btn btn-success" href="/guest"><i class="icon-map-marker icon-white"></i>&nbsp;&nbsp;Change postcode</a><a class="btn btn-success" href="/user"><i class="icon-lock icon-white"></i>&nbsp;&nbsp;Log in</a>
+          		<a class="btn btn-success" href="/user/register"><i class="icon-ok-sign icon-white"></i>&nbsp;&nbsp;Join</a><a class="btn btn-success" href="/guest"><i class="icon-map-marker icon-white"></i>&nbsp;&nbsp;Postcode</a><a class="btn btn-success" href="/user"><i class="icon-lock icon-white"></i>&nbsp;&nbsp;Log in</a>
        
             <?php endif; ?>
           </div> 
