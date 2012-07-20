@@ -10,8 +10,6 @@ function localitee_preprocess_region( &$variables ) {
   // then cut out html for the context menu and main content block.
   // This was a HACK under time pressure to make front page carousel work.
   if ( $variables['region'] == 'content'  &&  $variables['is_front'] ) {
-    dsm( $variables );
-    dsm( $variables['content'] );
     $pos =
       strpos( $variables['content'], "<a class='context-block-region'" );
     if ( ! $pos ) {
