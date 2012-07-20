@@ -1,0 +1,3 @@
+name = Just in time variable
+description = Load rarely needed variables when required, rather than on every page load.
+core = 7.x

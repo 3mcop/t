@@ -1,0 +1,130 @@
+ <?php
+
+/**
+ * @file
+ * User defined permissions.
+ *
+ * Allow permissions to be defined through the UI. Useful for anything that
+ * allows administrators to choose how to limit access. Primarily thinking
+ * of views here.
+ */
+
+/**
+ * Implements hook_permission()
+ */
+function user_def_perms_permission() {
+  return jit_variable_get( 'user_def_perms_perms', array() );
+}
+
+/**
+ * Implements hook_menu()
+ */
+function user_def_perms_menu() {
+
+  // Main admin screen
+  $items['admin/people/permissions/user-defined'] = array(
+    'title' => 'User defined',
+    'description' => 'Create, edit and delete user defined permissions',
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => '_user_def_perms_admin_page',
+    'access arguments' => array('administer permissions'),
+    'weight' => -10,
+  );
+
+  // Deletion confirmation screen
+  $items['admin/people/permissions/user-defined/%/delete'] = array(
+    'title' => 'Delete user-defined permission',
+    'description' => 'Delete user-defined permission',
+    'type' => MENU_CALLBACK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_user_def_perms_delete_perm_form'),
+    'access arguments' => array('administer permissions'),
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for main admin screen.
+ */
+function _user_def_perms_admin_page() {
+
+  $summary = t('Define your own permissions here for controlling access to elements of your site. For example, you could define a permission to control access to a view.');
+  //$developer_notes = t('Developers: Note that if you want to use a user defined permission in code, the permission name is the title all in lower case.');
+
+  $header = array( t('Title &nbsp;<small>(for permissions UI)</small>'), t('ID &nbsp;<small>(for custom code)</small>'), t('Operations') );
+
+  $rows = array();
+  $perms = jit_variable_get( 'user_def_perms_perms', array() );
+  foreach ( $perms as $perm_id => $perm ) {
+    $row = array();
+    $row[] = $perm['title'];
+    $row[] = $perm_id;
+    $row[] = l( t('delete'),
+      'admin/people/permissions/user-defined/' . $perm_id . '/delete' );
+    $rows[] = $row;
+  }
+
+  $output = '';
+  $output = '<p>' . $summary . '</p>';
+//  $output = '<p>' . $developer_notes . '</p>';
+  $output .= theme( 'table', array( 'header' => $header, 'rows' => $rows ) );
+  $output .= drupal_render( drupal_get_form( '_user_def_perms_add_perm_form' ) );
+  return $output;
+}
+
+/**
+ * Form callback function for adding new permissions.
+ */
+function _user_def_perms_add_perm_form() {
+  $form['title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#title_display' => 'invisible',
+    '#size' => 32,
+    '#maxlength' => 64,
+  );
+  $form['add'] = array(
+    '#type' => 'submit',
+    '#value' => t('Add permission'),
+  );
+  return $form;
+}
+
+/**
+ * Submit function for similarly named form.
+ */
+function _user_def_perms_add_perm_form_submit( $form, $form_state ) {
+  $perms = jit_variable_get( 'user_def_perms_perms', array() );
+  $title = $form_state['values']['title'];
+  $name = strtolower( $title );
+  $perms[$name] = array( 'title' => $title );
+  jit_variable_set( 'user_def_perms_perms', $perms );
+}
+
+/**
+ * Form callback function for deleting a permission.
+ */
+function _user_def_perms_delete_perm_form($form, &$form_state) {
+
+  return confirm_form(
+    $form,
+    t('Are you sure you want to delete this user-defined permission?'),
+    'admin/people/permissions/user-defined',
+    t('This action cannot be undone.'),
+    t('Delete'),
+    t('Cancel')
+  );
+}
+
+/**
+ * Submit function for similarly named form.
+ */
+function _user_def_perms_delete_perm_form_submit($form, &$form_state) {
+
+  $perm_id = arg(4);
+  $perms = jit_variable_get( 'user_def_perms_perms', array() );
+  unset( $perms[$perm_id] );
+  jit_variable_set( 'user_def_perms_perms', $perms );
+  drupal_goto( $form['actions']['cancel']['#href'] );
+}

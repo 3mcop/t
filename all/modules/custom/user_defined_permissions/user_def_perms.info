@@ -1,0 +1,4 @@
+name = User defined permissions
+description = User defined permissions
+core = 7.x
+dependencies[] = jit_variable

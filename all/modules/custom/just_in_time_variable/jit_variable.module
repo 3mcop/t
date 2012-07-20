@@ -1,0 +1,130 @@
+ <?php
+
+/**
+ * @file
+ * Just in time variable
+ *
+ * Load variables when they are needed, rather than on every page request.
+ * Particularly suitable for large, infrequently used, variables.
+ */
+
+/**
+ * Using the same static data across two functions so defining a name here
+ * rather than using a function name.
+ */
+define( 'JIT_VARIABLE_STATIC_NAME', 'jit_variable_rows');
+
+/**
+ * Just-in-time equivalent of Drupal core variable_get(). API function.
+ *
+ * @param $name
+ *   Name of the variable whose value should be retreived.
+ * @param $default
+ *   The default value to return in the case that the variable does not exist.
+ *
+ * @return
+ *   Value of requested variable or $default if the variable does not exist.
+ */
+function jit_variable_get( $name, $default ) {
+
+  $variables = &drupal_static(JIT_VARIABLE_STATIC_NAME);
+
+  if ( isset( $variables[$name] ) ) {
+    return $variables[$name];
+  }
+  else {
+    $result = _jit_variable_get_db_value( $name );
+
+    if ( $result['success'] ) {
+      $variables[$name] = $result['value'];
+      return $variables[$name];
+    }
+    else {
+      return $default;
+    }
+  }
+}
+
+/**
+ * Just-in-time equivalent of Drupal core set_variable(). API function.
+ *
+ * @param $name
+ *   The name of the variable to store.
+ * @param $value
+ *   The value of the variable to store.
+ */
+function jit_variable_set( $name, $value ) {
+
+  $variables = &drupal_static(JIT_VARIABLE_STATIC_NAME);
+  $variables[$name] = $value;
+  _jit_variable_set_db_value( $name, $value );
+}
+
+/**
+ * Just-in-time equivalent of Drupal core delete_variable(). API function.
+ *
+ * @param $name
+ *   The name of the variable to delete.
+ */
+function jit_variable_delete( $name ) {
+dsm( $name );
+  $variables = &drupal_static(JIT_VARIABLE_STATIC_NAME);
+  unset( $variables[$name] );
+  _jit_variable_delete_db_value( $name );
+}
+
+/**
+ * Get a variable's value from the DB.
+ *
+ * Return value has two parts because any atomic value that might have been
+ * returned to indicate error could also have been stored as variable's value
+ *
+ * @param $name
+ *   The name of the variable to retrieve from the DB.
+ *
+ * @return
+ *   An array with key "success" (always) and key "value" (if successful).
+ */ 
+function _jit_variable_get_db_value( $name ) {
+
+  $result = db_select( 'jit_variable', 'j' )
+    ->fields( 'j', array( 'value' ) )
+    ->condition( 'name', $name )
+    ->execute()
+    ->FetchObject();
+
+  if ( isset( $result->value ) ) {
+    return array( "success" => TRUE, "value" => unserialize($result->value) );
+  }
+  else {
+    return array( "success" => FALSE );
+  }
+}
+
+/**
+ * Insert or update a variable in the DB.
+ *
+ * @param $name
+ *   The name of the variable to be inserted/updated.
+ * @param $value
+ *   The value of the variable to be inserted/updated.
+ */
+function _jit_variable_set_db_value( $name, $value ) {
+
+  db_merge('jit_variable')
+    ->key( array( 'name' => $name ) )
+    ->fields( array( 'value' => serialize($value) ) )
+    ->execute();
+}
+
+/**
+ * Delete a variable from the DB.
+ *
+ * @param $name
+ *   The name of the variable to be deleted.
+ */
+function _jit_variable_delete_db_value( $name ) {
+  $num_deleted = db_delete('jit_variable')
+    ->condition('name', $name)
+    ->execute();
+}
