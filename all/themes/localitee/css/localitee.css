@@ -995,6 +995,11 @@ display: none !important;
 	{
 	font-size: 40px;
 	}
+	
+	.navbar-inner .account
+	{
+	float: none !important;	
+	}
 }
 
 @media (max-width: 767px) {
