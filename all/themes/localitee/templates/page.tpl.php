@@ -109,7 +109,13 @@
           	<?php if ( empty( $postcode ) ): ?>
           		<a href="/">Where are you?</a>
           	<?php else: ?>
-          		<?php print $postcode; ?>
+          	
+          		<?php if (user_is_logged_in()): ?>
+          			<a href="/user"><?php print $postcode; ?></a>
+          		<?php else: ?>
+          			<a href="/guest"><?php print $postcode; ?></a>
+          		<?php endif; ?>
+          		
           	<?php endif; ?>
 
           	</div>
