@@ -93,32 +93,52 @@
               <li class="divider"></li>
               <li><a href="/user"><i class="icon-map-marker"></i> Postcode radius: <span><?php print $postcode_radius ?></span></a></li>
               <li class="divider"></li>
-              <li><a href="/user/logout"><i class="icon-lock"></i> Sign Out</a></li>
+              <li><a href="/user/logout"><i class="icon-lock"></i> Log out</a></li>
             </ul>
           <?php else: ?>
-          	<a class="btn btn-success dropdown-toggle login_btn" data-toggle="dropdown" href="#" id="tab">
-          		<i class="icon-cog icon-white"></i> Sign in
+          	<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#" id="tab">
+          		<i class="icon-cog icon-white"></i> Settings
                 <span class="caret"></span>
             </a>
+            <ul class="dropdown-menu">
+              <li><a href="/guest"><i class="icon-map-marker"></i> Change postcode</a></li>
+              <li class="divider"></li>
+              <li><a href="/user/register"><i class="icon-ok-sign"></i> Join Localitee</a></li>
+              <li class="divider"></li>
+              <li><a href="/user"><i class="icon-lock"></i> Log in</a></li>
+            </ul>
+            
+            <!--
+            
             <div id="login_box">
                 <div id="login_box_content">
                     
-                         <?php print render($login_form); ?>
+                         <?php // print render($login_form); ?>
                          
                          <ul>
-		    				<li><a href="user/password"><?php echo t('Forgot your password?') ?></a></li>
-		    				<li><a href="user/register"><?php echo t('Join Localitee') ?></a></li>
+		    				<li><a href="user/password"><?php // echo t('Forgot your password?') ?></a></li>
+		    				<li><a href="user/register"><?php // echo t('Join Localitee') ?></a></li>
 		    			</ul>
 
                  </div>
              </div>
+             
+             -->
                 
             <?php endif; ?>
           </div> 
           
           <div id="branding">
           	<div class="logo"><a href="<?php print $front_page; ?>">Localitee<span>.</span></a></div>
-          	<div class="postcode"><?php print $postcode; ?></div>
+          	<div class="postcode">
+          	
+          	<?php if ( empty( $postcode ) ): ?>
+          		<a href="/">Where are you?</a>
+          	<?php else: ?>
+          		<?php print $postcode; ?>
+          	<?php endif; ?>
+
+          	</div>
           </div>
           
           <div class="nav-collapse">

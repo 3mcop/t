@@ -919,9 +919,9 @@ background: url('../img/icon-link-green.png') no-repeat 2px 2px;
 
 /* CSS fixes to remove erroneous content */
 
-.front #block-system-main, .front #context-block-region-content
+#myCarousel #block-system-main
 {
-display: none;
+display: none !important;
 }
 
 
