@@ -935,6 +935,11 @@ display: none !important;
 		
 	}
 	
+	.navbar-inner, .box, .col2box
+	{
+	padding: 10px !important;
+	}
+	
 	.searchbox
 	{
 	width: 250px;
@@ -1001,10 +1006,6 @@ display: none !important;
 	float: none !important;	
 	}
 	
-	.navbar-inner, .box, .col2box
-	{
-	padding: 10px;
-	}
 }
 
 @media (max-width: 767px) {
