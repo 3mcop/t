@@ -931,8 +931,13 @@ display: none !important;
 {
 	.navbar-inner #branding
 	{
-	margin-top: 40px;	
+	margin-top: 40px;
 		
+	}
+	
+	.navbar-inner, .box, .col2box
+	{
+	padding: 10px !important;
 	}
 	
 	.searchbox
@@ -995,6 +1000,11 @@ display: none !important;
 	{
 	font-size: 40px;
 	}
+	
+	.navbar-inner .account
+	{
+	}
+	
 }
 
 @media (max-width: 767px) {

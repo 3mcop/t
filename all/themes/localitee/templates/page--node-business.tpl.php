@@ -93,28 +93,14 @@
               <li class="divider"></li>
               <li><a href="/user"><i class="icon-map-marker"></i> Postcode radius: <span><?php print $postcode_radius ?></span></a></li>
               <li class="divider"></li>
-              <li><a href="/user/logout"><i class="icon-lock"></i> Sign Out</a></li>
+              <li><a href="/user/logout"><i class="icon-lock"></i> Log out</a></li>
             </ul>
           <?php else: ?>
-          	<a class="btn btn-success dropdown-toggle login_btn" data-toggle="dropdown" href="#" id="tab">
-          		<i class="icon-cog icon-white"></i> Sign in
-                <span class="caret"></span>
-            </a>
-            <div id="login_box">
-                <div id="login_box_content">
-                    
-                         <?php print render($login_form); ?>
-                         
-                         <ul>
-		    				<li><a href="user/password"><?php echo t('Forgot your password?') ?></a></li>
-		    				<li><a href="user/register"><?php echo t('Join Localitee') ?></a></li>
-		    			</ul>
-
-                 </div>
-             </div>
-                
+          
+          		<a class="btn btn-success" href="/user/register"><i class="icon-ok-sign icon-white"></i>&nbsp;&nbsp;Join</a><a class="btn btn-success" href="/guest"><i class="icon-map-marker icon-white"></i>&nbsp;&nbsp;Postcode</a><a class="btn btn-success" href="/user"><i class="icon-lock icon-white"></i>&nbsp;&nbsp;Log in</a>
+       
             <?php endif; ?>
-          </div> 
+          </div>  
           
           <div id="branding">
           	<div class="logo"><a href="<?php print $front_page; ?>">Localitee<span>.</span></a></div>
@@ -155,16 +141,153 @@
         </div><!-- /.span12 -->
       </div><!-- /.row-fluid -->
       
-      <div class="row-fluid" id="maincontent" role="main">
+      <div class="row-fluid businessprofile" id="maincontent" role="main">
           
-            <div class="span12">
+            <div class="span12">  
+            
+            	<div class="box">
+            		<h1>Openspace</h1>
+            		
+            		<div class="business-logo">
+            			<img src="img/openspace-logo.png" alt="Logo: Openspace"/>
+            		</div>
+            
+            		<p><b>OpenSpace is a members' co-operative. By managing our workspace ourselves, we can run an affordable, attractive office where different members and tenants carry out a variety of creative and socially conscious work.</b></p>
+            		
+            		<img src="img/coopvan.jpg" alt="" class="alignleft"/>
+            		
+            		<h3>Members and Tenants</h3>
+            		<p>The space is used by a broad mix of people including:</p>
 
-            <h1>Put flat biz page content here:
-             <?php print __FILE__; ?> line <?php print __LINE__; ?></h1>
-                          
-            </div><!-- /.span12 -->
+            		<p>a digital marketing consultant, a web designer, two web developer / programmers, two freelance journalists, an author, a writer / performer, a cartoonist,  an illustrator, a 3rd-sector consultant, an energy &amp; low-impact housing expert, and a national legal advice organisation.</p>
+            		
+            		<h3>Office Space Available</h3>
+            		
+            		
+
+            		<p>Full-time spaces are available from £147 a month (£105 for Members) and are available now to freelancers, ethical businesses and social enterprises.</p>
+
+            		<p>Flexible part-time packages are also available - see our rates, location and facilities for more information.</p>
+
+            		<p>Our facilities include wi-fi broadband, printing, and good transport links with on-street parking.</p>
+	            
+            	</div>
+                            
+              
+            </div><!--/span-->          
+
+          </div><!--/row-fluid-->
           
-      </div><!-- /.row-fluid -->
+          <div class="row-fluid businessprofile">
+          
+            <div class="span7">  
+            
+            	<div class="box">
+            
+	            	<h2>Openspace contact details</h2>
+	            	
+	            	<div class="address">
+	            	<h4>OpenSpace Co-operative</h4>
+	            	<p>Work for Change<br/>
+	            	Unit 1<br/>
+	            	41 Old Birley Street<br/>
+	            	Hulme<br/>
+	            	Manchester<br/>
+	            	M15 5RF<br/>
+	            	Company no: 6504771
+	            	</p>
+	            	</div>
+	            	
+	            	<div class="contact-details">
+	            	<ul>
+	            		<li class="phone"><span class="offscreen">Tel: </span>0161 232 9292</li>
+	            		<li class="email"><span class="offscreen">Email: </span><a href="mailto:info@openspace.coop">info@openspace.coop</a></li>
+	            		<li class="twitter"><a href="http://twitter.com/openspaceUK"><span class="offscreen">Twitter: </span>@openspaceUK</a></li>
+	            		<li class="website"><a href="http://www.openspace.coop<">http://www.openspace.coop</a></li>
+	            	</ul>
+	            	</div>
+
+	            	<h4 class="marker">Get directions to Openspace on Google Maps</h4>
+	            	<div class="map">
+	       
+	            	<iframe width="300" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=OpenSpace,+Old+Birley+Street,+Manchester&amp;aq=0&amp;oq=openspace+&amp;sll=53.800651,-4.064941&amp;sspn=9.560543,16.54541&amp;t=m&amp;ie=UTF8&amp;hq=OpenSpace,&amp;hnear=Old+Birley+St,+Manchester,+United+Kingdom&amp;ll=53.46525,-2.248335&amp;spn=0.003832,0.006437&amp;z=16&amp;output=embed"></iframe><br /><small><a href="https://maps.google.co.uk/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=OpenSpace,+Old+Birley+Street,+Manchester&amp;aq=0&amp;oq=openspace+&amp;sll=53.800651,-4.064941&amp;sspn=9.560543,16.54541&amp;t=m&amp;ie=UTF8&amp;hq=OpenSpace,&amp;hnear=Old+Birley+St,+Manchester,+United+Kingdom&amp;ll=53.46525,-2.248335&amp;spn=0.003832,0.006437&amp;z=16" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+	            	</div>
+	            
+            	</div>
+                            
+              
+            </div><!--/span-->
+            
+            <div class="span5">  
+            
+            	<div class="box">
+            
+	            <h2>Recent Openspace activity</h2>
+	            	<ul class="nav nav-tabs">
+		            	<li class="active"><a href="#tabnews" data-toggle="tab">News</a></li>
+		            	<li><a href="#tabevents" data-toggle="tab">Events</a></li>
+		            	<li><a href="#tabdiscussions" data-toggle="tab">Discussions</a></li>
+		            </ul>
+		            
+		            <div class="tab-content">
+			            <div class="tab-pane active" id="tabnews">
+			            	<ul>
+	            		
+		            			<li class="news"><h4><a href="">News title</a></h4>
+		            				The surface is fine and powdery. I can kick it up loosely with my toe.
+		            				<span><a class="" href="#">Read more &rarr;</a></span></li>
+		            			<li class="news"><h4><a href="">News title</a></h4>
+		            				The surface is fine and powdery. I can kick it up loosely with my toe.
+		            				<span><a class="" href="#">Read more &rarr;</a></span></li>
+		            			<li class="news"><h4><a href="">News title</a></h4>
+		            				The surface is fine and powdery. I can kick it up loosely with my toe.
+		            				<span><a class="" href="#">Read more &rarr;</a></span></li>
+		            		
+		            			</ul>
+			            	<p><a class="btn btn-success" href="#">More Openspace news articles &raquo;</a></p>
+			            </div>
+			            
+			            <div class="tab-pane" id="tabevents">
+			            	<ul>
+	            		
+		            			<li class="event"><h4><a href="">Event title</a></h4>
+		            				The surface is fine and powdery. I can kick it up loosely with my toe.
+		            				<span><a class="" href="#">Read more &rarr;</a></span></li>
+		            			<li class="event"><h4><a href="">Event title</a></h4>
+		            				The surface is fine and powdery. I can kick it up loosely with my toe.
+		            				<span><a class="" href="#">Read more &rarr;</a></span></li>
+		            			<li class="event"><h4><a href="">Event title</a></h4>
+		            				The surface is fine and powdery. I can kick it up loosely with my toe.
+		            				<span><a class="" href="#">Read more &rarr;</a></span></li>
+		            		
+		            			</ul>
+			            	<p><a class="btn btn-success" href="#">More Openspace events &raquo;</a></p>
+			            </div>
+			            
+			            <div class="tab-pane" id="tabdiscussions">
+			            	<ul>
+	            		
+		            			<li class="discussion"><h4><a href="">Discussion title</a></h4>
+		            				The surface is fine and powdery. I can kick it up loosely with my toe.
+		            				<span><a class="" href="#">Read more &rarr;</a></span></li>
+		            			<li class="discussion"><h4><a href="">Discussion title</a></h4>
+		            				The surface is fine and powdery. I can kick it up loosely with my toe.
+		            				<span><a class="" href="#">Read more &rarr;</a></span></li>
+		            			<li class="discussion"><h4><a href="">Discussion title</a></h4>
+		            				The surface is fine and powdery. I can kick it up loosely with my toe.
+		            				<span><a class="" href="#">Read more &rarr;</a></span></li>
+		            		
+		            			</ul>
+			            	<p><a class="btn btn-success" href="#">More Openspace discussions &raquo;</a></p>
+			            </div>
+		            </div>
+	            
+            	</div>        
+              
+            </div><!--/span-->
+            
+
+          </div><!--/row-fluid-->
 
 
     </div><!--/.fluid-container-->
