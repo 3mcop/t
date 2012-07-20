@@ -96,35 +96,9 @@
               <li><a href="/user/logout"><i class="icon-lock"></i> Log out</a></li>
             </ul>
           <?php else: ?>
-          	<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#" id="tab">
-          		<i class="icon-cog icon-white"></i> Settings
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="/guest"><i class="icon-map-marker"></i> Change postcode</a></li>
-              <li class="divider"></li>
-              <li><a href="/user/register"><i class="icon-ok-sign"></i> Join Localitee</a></li>
-              <li class="divider"></li>
-              <li><a href="/user"><i class="icon-lock"></i> Log in</a></li>
-            </ul>
-            
-            <!--
-            
-            <div id="login_box">
-                <div id="login_box_content">
-                    
-                         <?php // print render($login_form); ?>
-                         
-                         <ul>
-		    				<li><a href="user/password"><?php // echo t('Forgot your password?') ?></a></li>
-		    				<li><a href="user/register"><?php // echo t('Join Localitee') ?></a></li>
-		    			</ul>
-
-                 </div>
-             </div>
-             
-             -->
-                
+          
+          		<a class="btn btn-success" href="/user/register"><i class="icon-ok-sign icon-white"></i>&nbsp;&nbsp;Join Localitee</a><a class="btn btn-success" href="/guest"><i class="icon-map-marker icon-white"></i>&nbsp;&nbsp;Change postcode</a><a class="btn btn-success" href="/user"><i class="icon-lock icon-white"></i>&nbsp;&nbsp;Log in</a>
+       
             <?php endif; ?>
           </div> 
           
