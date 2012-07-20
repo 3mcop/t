@@ -1,5 +1,28 @@
 <?php
 
+/**
+ * Implements hook_preprocess_region()
+ */
+function localitee_preprocess_region( &$variables ) {
+
+  // HACK: This is really UGLY!
+  // If the current region is 'content' and the current page is '<front>'
+  // then cut out html for the context menu and main content block.
+  // This was a HACK under time pressure to make front page carousel work.
+  if ( $variables['region'] == 'content'  &&  $variables['is_front'] ) {
+    $pos =
+      strpos( $variables['content'], "<a class='context-block-region'" );
+    $variables['content'] =
+      substr_replace( $variables['content'], '', $pos, -1);
+    dsm( $variables['content'] );
+  }
+}
+
+function localitee_preprocess_region__content( &$variables ) {
+  dsm ( $variables );
+  $variables['content'] = "<h1>Wank!</h1>";
+}
+
 function localitee_preprocess_search_result( &$variables ) {
 
   $variables['node_type'] = drupal_html_class( $variables['result']['type'] );
