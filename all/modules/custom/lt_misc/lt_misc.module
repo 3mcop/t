@@ -27,16 +27,52 @@ function lt_misc_preprocess_page( &$variables ) {
 
 function lt_misc_views_query_alter( &$view, &$query ) {
 
-   if ( ! empty($view->filter['flat']) ) {
-  $bounds_calculator = new openlayers_proximity_handler_filter_square();
-  $bounds = $bounds_calculator->get_bounds( 53.359058, -2.038366, 5 );
-  dsm( $bounds );
-dsm( $query );
-   print( "<pre>" );
-   print_object_route( $query, '53' );
-   print( "</pre>" );
+  // Use the presence of a filter called 'flat' to determine whether there
+  // is a proximity filter that we can modify.
+  if ( ! empty($view->filter['flat']) ) {
+
+    // Using the openlayers_proximity's own bounds calculation.
+    // @todo add module dependency on openlayers_proximity.
+    $bounds_calculator = new openlayers_proximity_handler_filter_square();
+    $bounds = $bounds_calculator->get_bounds( 53.359058, -2.038366, 5 );
+    dsm( $bounds );
+
+    // Just being paranoid here. Could views rely on the array pointer
+    // being in a particular position? Unlikely.
+    $conditions = &$query->where[1]['conditions'];
+    $initial_pos = key( $conditions );
+
+    // Get a method of referencing the last element of the array, cus that's
+    // where we keep the proximity filter. Is there a more elegant way of
+    // doing this? Probably.
+    end( $conditions );
+    $last_pos = key( $conditions );
+
+    // Set the geobounds for the view query to those for the current user
+    // settings.
+    dsm( $conditions[$last_pos]['field'] );
+    $conditions[$last_pos]['field'] =
+      '(openlayers_proximity.lat <= ' . $bounds['north'] .
+      ' AND openlayers_proximity.lat >= ' . $bounds['south'] .
+      ' AND openlayers_proximity.lon >= ' . $bounds['west'] .
+      ' AND openlayers_proximity.lon <= ' . $bounds['east'] . ')';
+    dsm( $conditions[$last_pos]['field'] );
+
+    // Finishing off our paranoid treatment of the array pointer.
+    _lt_misc_set_array_pointer( $conditions, $initial_pos );
+
+    //print( "<pre>" );
+    //print_object_route( $query, '53' );
+    //print( "</pre>" );
   }
 }
+
+function _lt_misc_set_array_pointer (&$array,$key) { 
+  reset ($array); 
+  while (key($array) !== $key) { 
+    if (next($array) === false) throw new Exception('Invalid key'); 
+  } 
+} 
 
 function print_object_route( $object, $text, $depth=0 ) {
   if ( $depth > 20 ) {
