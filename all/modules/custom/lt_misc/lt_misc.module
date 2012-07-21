@@ -2,8 +2,9 @@
 
 /**
  * @file
- * Show a modal overlay asking for postcode/login/signup
+ * Localitee-specific stuff that has not yet gained a module of its own.
  */
+
 
 /**
  * Implements hook_preprocess_page()
@@ -25,11 +26,27 @@ function lt_misc_preprocess_page( &$variables ) {
   }
 }
 
+/**
+ * Implements hook_views_query_alter()
+ *
+ * --- ! FRAGILE CODE ! ---
+ *
+ * We're using this function to alter *every* views query where the view
+ * has a filter called "flat". Where that filter exists, we alter the last
+ * condition in the query. We assume that this is always the openlayers
+ * proximity square filter condition.
+ */
 function lt_misc_views_query_alter( &$view, &$query ) {
 
   // Use the presence of a filter called 'flat' to determine whether there
   // is a proximity filter that we can modify.
   if ( ! empty($view->filter['flat']) ) {
+
+    $latlon = postcode_get_latlon();
+    dsm( $latlon );
+    if ( empty( $latlon ) ) {
+      return;
+    }
 
     // Using the openlayers_proximity's own bounds calculation.
     // @todo add module dependency on openlayers_proximity.
@@ -42,9 +59,9 @@ function lt_misc_views_query_alter( &$view, &$query ) {
     $conditions = &$query->where[1]['conditions'];
     $initial_pos = key( $conditions );
 
-    // Get a method of referencing the last element of the array, cus that's
-    // where we keep the proximity filter. Is there a more elegant way of
-    // doing this? Probably.
+    // Get a reference to the last element of the conditions array, cus
+    // that's where we keep the proximity filter. Is there a more elegant
+    // way of doing this? Probably.
     end( $conditions );
     $last_pos = key( $conditions );
 
@@ -74,7 +91,19 @@ function _lt_misc_set_array_pointer (&$array,$key) {
   } 
 } 
 
+
+
+
+/**
+ * @todo Make a print_object module and move code below in to it.
+ */
+
+
 function print_object_route( $object, $text, $depth=0 ) {
+  // @idea Instead of printing out keys, make a copy of the original object in
+  // a wrapper fn and then use the inner fn to unset keys whose children do not
+  // contain the required text. Then show the trimmed down object using dsm
+
   if ( $depth > 20 ) {
     return FALSE;
   }

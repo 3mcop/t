@@ -42,7 +42,33 @@ function postcode_get_radius() {
   else if ( ! empty($_SESSION['postcode']['radius']) ) {
     $result = $_SESSION['postcode']['radius'];
   }
+
+  return $result;
 }
+
+function postcode_get_latlon() {
+
+  $result = array();
+
+  if ( user_is_logged_in() ) {
+
+    global $user;
+    $profile = profile2_load_by_user( $user, 'main' );
+    dsm( $profile );
+    //if ( ! empty( $profile->field_postcode_radius['und'][0]['safe_value'] ) ) {
+    //  $result = $profile->field_postcode_radius['und'][0]['safe_value'];
+    //}
+  }
+  else if ( ! empty($_SESSION['postcode']['lat']) &&
+    ! empty($_SESSION['postcode']['lon'])
+  ) {
+    $result['lat'] = $_SESSION['postcode']['lat'];
+    $result['lon'] = $_SESSION['postcode']['lon'];
+  }
+
+  return $result;
+}
+
 
 function postcode_exists() {
   $postcode = postcode_get_postcode();
@@ -55,7 +81,15 @@ function postcode_is_real_postcode( $pc ) {
 }
 
 function postcode_set_guest_postcode( $pc ) {
+
   $_SESSION['postcode']['postcode'] = $pc;
+
+  // Geocode the given postcode and record the coordinates in the session.
+  $point = geocoder( 'google', $pc . ', United Kingdom' );
+  $wkt = $point->out('wkt');
+  $bits = explode( ' ', trim( $wkt ) );
+  $_SESSION['postcode']['lat'] = substr( $bits[2], 0, -1 );
+  $_SESSION['postcode']['lon'] = substr( $bits[1], 1 );
 }
 
 function postcode_preprocess_page( &$variables ) {
