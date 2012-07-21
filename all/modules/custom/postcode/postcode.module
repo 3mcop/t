@@ -19,7 +19,7 @@ function postcode_get_postcode() {
     }
   }
   else if ( ! empty($_SESSION['postcode']['postcode']) ) {
-    $result = $_SESSION['postcode']['postcode'];
+    $result = check_plain( $_SESSION['postcode']['postcode'] );
   }
 
   return $result;
@@ -39,8 +39,11 @@ function postcode_get_radius() {
       $result = $profile->field_postcode_radius['und'][0]['safe_value'];
     }
   }
-  else if ( ! empty($_SESSION['postcode']['radius']) ) {
-    $result = $_SESSION['postcode']['radius'];
+  elseif ( ! empty( $_SESSION['postcode']['radius'] ) ) {
+    $radius = $_SESSION['postcode']['radius'];
+    if ( is_numeric( $radius ) ) {
+      $result = check_plain( $radius );
+    }
   }
 
   return $result;
@@ -64,8 +67,8 @@ function postcode_get_latlon() {
   else if ( ! empty($_SESSION['postcode']['lat']) &&
     ! empty($_SESSION['postcode']['lon'])
   ) {
-    $result['lat'] = $_SESSION['postcode']['lat'];
-    $result['lon'] = $_SESSION['postcode']['lon'];
+    $result['lat'] = check_plain( $_SESSION['postcode']['lat'] );
+    $result['lon'] = check_plain( $_SESSION['postcode']['lon'] );
   }
 
   return $result;
@@ -77,24 +80,72 @@ function postcode_exists() {
   return ! empty( $postcode );
 }
 
+/**
+ * Clean up a postcode string, paying attention to case and white space.
+ */
+function postcode_clean_user_input( $pc ) {
+  return strtoupper( preg_replace( '/ {2,}/', ' ', trim( $pc ) ) );
+}
+
+// @todo refactor ->
+//     postcode_is_well_formatted + postcode_can_be_geolocated
 function postcode_is_real_postcode( $pc ) {
-  // @todo validate
-  return TRUE;
+  dsm( $pc );
+
+  $pc = postcode_clean_user_input( $pc );
+  dsm( $pc );
+
+  // Use the short BS7666 schema regex to check that this is a postcode.
+  $pattern = '/[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}/';
+  $matches = array();
+  $num_matches = preg_match( $pattern, $pc, $matches );
+  dsm( 'num matches: ' . $num_matches );
+  dsm( $matches );
+
+  if ( $num_matches != 1 || $matches[0] != $pc ) {
+    return FALSE;
+  }
+
+  // Postcode matched the regex, so try geocoding it.
+  // If this doesn't work then the postcode probably doesn't exist yet.
+  try {
+    $point = geocoder( 'google', $pc . ', United Kingdom' );
+    if ( ! is_object( $point ) ) {
+      return FALSE;
+    }
+    $wkt = $point->out('wkt');
+    dsm( $wkt );
+  }
+  catch ( Exception $e ) {
+    return FALSE;
+  }
+
+  return !empty( $wkt );
 }
 
 function postcode_set_guest_postcode( $pc ) {
 
+  $pc = postcode_clean_user_input( $pc );
+
   $_SESSION['postcode']['postcode'] = $pc;
 
   // Geocode the given postcode and record the coordinates in the session.
-  $point = geocoder( 'google', $pc . ', United Kingdom' );
-  $wkt = $point->out('wkt');
-  $bits = explode( ' ', trim( $wkt ) );
-  $_SESSION['postcode']['lat'] = substr( $bits[2], 0, -1 );
-  $_SESSION['postcode']['lon'] = substr( $bits[1], 1 );
+  try {
+    $point = geocoder( 'google', $pc . ', United Kingdom' );
+    $wkt = $point->out('wkt');
+    $bits = explode( ' ', trim( $wkt ) );
+    $_SESSION['postcode']['lat'] = substr( $bits[2], 0, -1 );
+    $_SESSION['postcode']['lon'] = substr( $bits[1], 1 );
+  }
+  catch ( Exception $e ) {
+    drupal_set_message( t( "Sorry. We couldn't locate that postcode. Localitee can't show you your local area." ), 'error' );
+  }
 }
+
+//function postcode_set_guest_postcode_radius( $radius ) {
+
 
 function postcode_preprocess_page( &$variables ) {
   $variables['postcode'] = postcode_get_postcode();
-  $variables['postcode_radius'] = postcode_get_radius() . t( ' miles' );
+  $variables['postcode_radius'] = postcode_get_radius() . t( ' km' );
 }

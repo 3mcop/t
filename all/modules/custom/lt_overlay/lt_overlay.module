@@ -91,8 +91,12 @@ function lt_overlay_postcode_form_validate( $form, &$form_state ) {
   }
   else {
     $postcode = $form_state['values']['postcode'];
-    if ( ! postcode_is_real_postcode( $postcode ) ) {
-      form_set_error( 'postcode', t( 'The postcode you entered is not valid.' ) );
+    if ( postcode_is_real_postcode( $postcode ) ) {
+      $form_state['values']['postcode'] =
+        postcode_clean_user_input( $postcode );
+    }
+    else {
+      form_set_error( 'postcode', t( 'The postcode you entered does not seem to be valid.' ) );
     }
   }
 }
