@@ -163,12 +163,12 @@ function postcode_form( $form, &$form_state ) {
       '#title' => t('Enter your postcode'),
       '#attributes' => array( 'placeholder' => t('Enter postcode') ),
     ),
-    //'radius' => array(
-    //  '#type' => 'textfield',
-    //  '#title' => t('Enter a radius in km.'),
-    //  '#default_value' => POSTCODE_DEFAULT_RADIUS_KM,
-    //  '#attributes' => array( 'placeholder' => t('Enter radius') ),
-    //),
+    'radius' => array(
+      '#type' => 'textfield',
+      '#title' => t('Enter a radius in km.'),
+      '#default_value' => postcode_get_radius(),
+      '#attributes' => array( 'placeholder' => t('Enter radius') ),
+    ),
     'submit' => array(
       '#type' => 'submit',
       '#value' => t('Go'),
