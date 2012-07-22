@@ -5,7 +5,7 @@
  * Manage the postcode of both authenticated and anonymous users.
  */
 
-define( "POSTCODE_DEFAULT_RADIUS_KM", 5 );
+define( "POSTCODE_DEFAULT_RADIUS_KM", 10 );
 
 function postcode_get_postcode() {
 
@@ -147,7 +147,14 @@ function _postcode_set_guest_postcode( $pc ) {
   }
 }
 
-//function postcode_set_guest_postcode_radius( $radius ) {
+function _postcode_set_guest_radius( $radius ) {
+  if ( ! empty( $radius )  &&  is_numeric( $radius ) ) {
+    $_SESSION['postcode']['radius'] = $radius;
+  }
+  else {
+    $_SESSION['postcode']['radius'] = POSTCODE_DEFAULT_RADIUS_KM;
+  }
+}
 
 
 function postcode_preprocess_page( &$variables ) {
@@ -162,6 +169,7 @@ function postcode_form( $form, &$form_state ) {
     'postcode' => array(
       '#type' => 'textfield',
       '#title' => t('Enter your postcode'),
+      '#default_value' => postcode_get_postcode(),
       '#attributes' => array( 'placeholder' => t('Enter postcode') ),
     ),
     'radius' => array(
@@ -191,9 +199,16 @@ function postcode_form_validate( $form, &$form_state ) {
       form_set_error( 'postcode', t( 'The postcode you entered does not seem to be valid.' ) );
     }
   }
+
+  if ( ! empty( $form_state['values']['radius'] ) &&
+    ! is_numeric( $form_state['values']['radius'] )
+  ) {
+    set_form_error( 'radius', t( 'Radius must be a number. (You can leave it blank if you\'re not sure.)' ) );
+  }
 }
 
 function postcode_form_submit( $form, &$form_state ) {
   _postcode_set_guest_postcode( $form_state['values']['postcode'] );
+  _postcode_set_guest_radius( $form_state['values']['radius'] );
 }
 
