@@ -49,7 +49,7 @@ function lt_misc_views_query_alter( &$view, &$query ) {
     }
 
     $radius = postcode_get_radius();
-    //dsm( $radius );
+    dsm( $radius );
 
     // Using the openlayers_proximity's own bounds calculation.
     // @todo add module dependency on openlayers_proximity.
