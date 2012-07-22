@@ -149,3 +149,40 @@ function postcode_preprocess_page( &$variables ) {
   $variables['postcode'] = postcode_get_postcode();
   $variables['postcode_radius'] = postcode_get_radius() . t( ' km' );
 }
+
+
+function postcode_form( $form, &$form_state ) {
+
+  return array(
+    'postcode' => array(
+      '#type' => 'textfield',
+      '#title' => t('Enter your postcode'),
+      '#attributes' => array( 'placeholder' => t('Enter postcode') ),
+    ),
+    'submit' => array(
+      '#type' => 'submit',
+      '#value' => t('Go'),
+    ),
+  );
+}
+
+function postcode_form_validate( $form, &$form_state ) {
+  if ( empty( $form_state['values']['postcode'] ) ) {
+    form_set_error( 'postcode', t( 'You must enter a postcode.' ) );
+  }
+  else {
+    $postcode = $form_state['values']['postcode'];
+    if ( postcode_is_real_postcode( $postcode ) ) {
+      $form_state['values']['postcode'] =
+        postcode_clean_user_input( $postcode );
+    }
+    else {
+      form_set_error( 'postcode', t( 'The postcode you entered does not seem to be valid.' ) );
+    }
+  }
+}
+
+function postcode_form_submit( $form, &$form_state ) {
+  postcode_set_guest_postcode( $form_state['values']['postcode'] );
+}
+
