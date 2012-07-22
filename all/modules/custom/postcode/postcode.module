@@ -5,6 +5,8 @@
  * Manage the postcode of both authenticated and anonymous users.
  */
 
+define( "POSTCODE_DEFAULT_RADIUS_KM", 5 );
+
 function postcode_get_postcode() {
 
   $result = '';
@@ -28,7 +30,7 @@ function postcode_get_postcode() {
 function postcode_get_radius() {
 
   // Default radius. Units controlled elsewhere!
-  $result = 5;
+  $result = POSTCODE_DEFAULT_RADIUS_KM;
 
   if ( user_is_logged_in() ) {
 
@@ -83,16 +85,16 @@ function postcode_exists() {
 /**
  * Clean up a postcode string, paying attention to case and white space.
  */
-function postcode_clean_user_input( $pc ) {
+function _postcode_clean_user_input( $pc ) {
   return strtoupper( preg_replace( '/ {2,}/', ' ', trim( $pc ) ) );
 }
 
 // @todo refactor ->
-//     postcode_is_well_formatted + postcode_can_be_geolocated
-function postcode_is_real_postcode( $pc ) {
+//     _postcode_is_valid + _postcode_geolocate
+function _postcode_is_real_postcode( $pc ) {
   dsm( $pc );
 
-  $pc = postcode_clean_user_input( $pc );
+  $pc = _postcode_clean_user_input( $pc );
   dsm( $pc );
 
   // Use the short BS7666 schema regex to check that this is a postcode.
@@ -123,9 +125,11 @@ function postcode_is_real_postcode( $pc ) {
   return !empty( $wkt );
 }
 
-function postcode_set_guest_postcode( $pc ) {
+// @todo refactor ->
+//      use _postcode_geolocate from refactoring above
+function _postcode_set_guest_postcode( $pc ) {
 
-  $pc = postcode_clean_user_input( $pc );
+  $pc = _postcode_clean_user_input( $pc );
 
   $_SESSION['postcode']['postcode'] = $pc;
 
@@ -159,6 +163,12 @@ function postcode_form( $form, &$form_state ) {
       '#title' => t('Enter your postcode'),
       '#attributes' => array( 'placeholder' => t('Enter postcode') ),
     ),
+    //'radius' => array(
+    //  '#type' => 'textfield',
+    //  '#title' => t('Enter a radius in km.'),
+    //  '#default_value' => POSTCODE_DEFAULT_RADIUS_KM,
+    //  '#attributes' => array( 'placeholder' => t('Enter radius') ),
+    //),
     'submit' => array(
       '#type' => 'submit',
       '#value' => t('Go'),
@@ -172,9 +182,9 @@ function postcode_form_validate( $form, &$form_state ) {
   }
   else {
     $postcode = $form_state['values']['postcode'];
-    if ( postcode_is_real_postcode( $postcode ) ) {
+    if ( _postcode_is_real_postcode( $postcode ) ) {
       $form_state['values']['postcode'] =
-        postcode_clean_user_input( $postcode );
+        _postcode_clean_user_input( $postcode );
     }
     else {
       form_set_error( 'postcode', t( 'The postcode you entered does not seem to be valid.' ) );
@@ -183,6 +193,6 @@ function postcode_form_validate( $form, &$form_state ) {
 }
 
 function postcode_form_submit( $form, &$form_state ) {
-  postcode_set_guest_postcode( $form_state['values']['postcode'] );
+  _postcode_set_guest_postcode( $form_state['values']['postcode'] );
 }
 
