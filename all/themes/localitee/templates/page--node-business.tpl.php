@@ -91,7 +91,7 @@
             <ul class="dropdown-menu">
               <li><a href="/user"><i class="icon-user"></i> Your profile</a></li>
               <li class="divider"></li>
-              <li><a href="/user"><i class="icon-map-marker"></i> Postcode radius: <span><?php print $postcode_radius ?></span></a></li>
+              <li><a href="/user/<?php print $user->uid; ?>/edit/main"><i class="icon-map-marker"></i> Postcode radius: <span><?php print $postcode_radius ?></span></a></li>
               <li class="divider"></li>
               <li><a href="/user/logout"><i class="icon-lock"></i> Log out</a></li>
             </ul>
@@ -104,7 +104,21 @@
           
           <div id="branding">
           	<div class="logo"><a href="<?php print $front_page; ?>">Localitee<span>.</span></a></div>
-          	<div class="postcode"><?php print $postcode; ?></div>
+          	<div class="postcode">
+          	
+          	<?php if ( empty( $postcode ) ): ?>
+          		<a href="/">Where are you?</a>
+          	<?php else: ?>
+          	
+          		<?php if (user_is_logged_in()): ?>
+          			<a href="/user/<?php print $user->uid; ?>/edit/main"><?php print $postcode; ?></a>
+          		<?php else: ?>
+          			<a href="/guest"><?php print $postcode; ?></a>
+          		<?php endif; ?>
+          		
+          	<?php endif; ?>
+
+          	</div>
           </div>
           
           <div class="nav-collapse">
@@ -149,12 +163,12 @@
             		<h1>Openspace</h1>
             		
             		<div class="business-logo">
-            			<img src="img/openspace-logo.png" alt="Logo: Openspace"/>
+            			<img src="/sites/all/themes/localitee/img/openspace-logo.png" alt="Logo: Openspace"/>
             		</div>
             
             		<p><b>OpenSpace is a members' co-operative. By managing our workspace ourselves, we can run an affordable, attractive office where different members and tenants carry out a variety of creative and socially conscious work.</b></p>
             		
-            		<img src="img/coopvan.jpg" alt="" class="alignleft"/>
+            		<img src="/sites/all/themes/localitee/img/coopvan.jpg" alt="" class="alignleft"/>
             		
             		<h3>Members and Tenants</h3>
             		<p>The space is used by a broad mix of people including:</p>

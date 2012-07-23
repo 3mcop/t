@@ -5,6 +5,8 @@
  * Manage the postcode of both authenticated and anonymous users.
  */
 
+define( "POSTCODE_DEFAULT_RADIUS_KM", 10 );
+
 function postcode_get_postcode() {
 
   $result = '';
@@ -19,7 +21,7 @@ function postcode_get_postcode() {
     }
   }
   else if ( ! empty($_SESSION['postcode']['postcode']) ) {
-    $result = $_SESSION['postcode']['postcode'];
+    $result = check_plain( $_SESSION['postcode']['postcode'] );
   }
 
   return $result;
@@ -28,37 +30,185 @@ function postcode_get_postcode() {
 function postcode_get_radius() {
 
   // Default radius. Units controlled elsewhere!
-  $result = 5;
+  $result = POSTCODE_DEFAULT_RADIUS_KM;
+
+  if ( user_is_logged_in() ) {
+
+    global $user;
+    $profile = profile2_load_by_user( $user, 'main' );
+    //dsm( $profile );
+
+    if ( ! empty( $profile->field_postcode_radius['und'][0]['value'] ) ) {
+      $result = $profile->field_postcode_radius['und'][0]['value'];
+    }
+  }
+  elseif ( ! empty( $_SESSION['postcode']['radius'] ) ) {
+    $radius = $_SESSION['postcode']['radius'];
+    if ( is_numeric( $radius ) ) {
+      $result = check_plain( $radius );
+    }
+  }
+
+  return $result;
+}
+
+function postcode_get_latlon() {
+
+  $result = array();
 
   if ( user_is_logged_in() ) {
 
     global $user;
     $profile = profile2_load_by_user( $user, 'main' );
 
-    if ( ! empty( $profile->field_postcode_radius['und'][0]['safe_value'] ) ) {
-      $result = $profile->field_postcode_radius['und'][0]['safe_value'];
+    if ( ! empty( $profile->field_geolocation['und'][0]['lat'] ) &&
+    ! empty( $profile->field_geolocation['und'][0]['lon'] ) ) {
+      $result['lat'] = $profile->field_geolocation['und'][0]['lat'];
+      $result['lon'] = $profile->field_geolocation['und'][0]['lon'];
     }
   }
-  else if ( ! empty($_SESSION['postcode']['radius']) ) {
-    $result = $_SESSION['postcode']['radius'];
+  else if ( ! empty($_SESSION['postcode']['lat']) &&
+    ! empty($_SESSION['postcode']['lon'])
+  ) {
+    $result['lat'] = check_plain( $_SESSION['postcode']['lat'] );
+    $result['lon'] = check_plain( $_SESSION['postcode']['lon'] );
   }
+
+  return $result;
 }
+
 
 function postcode_exists() {
   $postcode = postcode_get_postcode();
   return ! empty( $postcode );
 }
 
-function postcode_is_real_postcode( $pc ) {
-  // @todo validate
-  return TRUE;
+/**
+ * Clean up a postcode string, paying attention to case and white space.
+ */
+function _postcode_clean_user_input( $pc ) {
+  return strtoupper( preg_replace( '/ {2,}/', ' ', trim( $pc ) ) );
 }
 
-function postcode_set_guest_postcode( $pc ) {
-  $_SESSION['postcode']['postcode'] = $pc;
+// @todo refactor ->
+//     _postcode_is_valid + _postcode_geolocate
+function _postcode_is_real_postcode( $pc ) {
+  //dsm( $pc );
+
+  $pc = _postcode_clean_user_input( $pc );
+  //dsm( $pc );
+
+  // Use the short BS7666 schema regex to check that this is a postcode.
+  $pattern = '/[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}/';
+  $matches = array();
+  $num_matches = preg_match( $pattern, $pc, $matches );
+  //dsm( 'num matches: ' . $num_matches );
+  //dsm( $matches );
+
+  if ( $num_matches != 1 || $matches[0] != $pc ) {
+    return FALSE;
+  }
+
+  // Postcode matched the regex, so try geocoding it.
+  // If this doesn't work then the postcode probably doesn't exist yet.
+  try {
+    $point = geocoder( 'google', $pc . ', United Kingdom' );
+    if ( ! is_object( $point ) ) {
+      return FALSE;
+    }
+    $wkt = $point->out('wkt');
+    //dsm( $wkt );
+  }
+  catch ( Exception $e ) {
+    return FALSE;
+  }
+
+  return !empty( $wkt );
 }
+
+// @todo refactor ->
+//      use _postcode_geolocate from refactoring above
+function _postcode_set_guest_postcode( $pc ) {
+
+  $pc = _postcode_clean_user_input( $pc );
+
+  $_SESSION['postcode']['postcode'] = $pc;
+
+  // Geocode the given postcode and record the coordinates in the session.
+  try {
+    $point = geocoder( 'google', $pc . ', United Kingdom' );
+    $wkt = $point->out('wkt');
+    $bits = explode( ' ', trim( $wkt ) );
+    $_SESSION['postcode']['lat'] = substr( $bits[2], 0, -1 );
+    $_SESSION['postcode']['lon'] = substr( $bits[1], 1 );
+  }
+  catch ( Exception $e ) {
+    drupal_set_message( t( "Sorry. We couldn't locate that postcode. Localitee can't show you your local area." ), 'error' );
+  }
+}
+
+function _postcode_set_guest_radius( $radius ) {
+  if ( ! empty( $radius )  &&  is_numeric( $radius ) ) {
+    $_SESSION['postcode']['radius'] = $radius;
+  }
+  else {
+    $_SESSION['postcode']['radius'] = POSTCODE_DEFAULT_RADIUS_KM;
+  }
+}
+
 
 function postcode_preprocess_page( &$variables ) {
   $variables['postcode'] = postcode_get_postcode();
-  $variables['postcode_radius'] = postcode_get_radius() . t( ' miles' );
+  $variables['postcode_radius'] = postcode_get_radius() . t( ' km' );
 }
+
+
+function postcode_form( $form, &$form_state ) {
+
+  return array(
+    'postcode' => array(
+      '#type' => 'textfield',
+      '#title' => t('Enter your postcode'),
+      '#default_value' => postcode_get_postcode(),
+      '#attributes' => array( 'placeholder' => t('Enter postcode') ),
+    ),
+    'radius' => array(
+      '#type' => 'textfield',
+      '#title' => t('Enter a radius in km.'),
+      '#default_value' => postcode_get_radius(),
+      '#attributes' => array( 'placeholder' => t('Enter radius') ),
+    ),
+    'submit' => array(
+      '#type' => 'submit',
+      '#value' => t('Go'),
+    ),
+  );
+}
+
+function postcode_form_validate( $form, &$form_state ) {
+  if ( empty( $form_state['values']['postcode'] ) ) {
+    form_set_error( 'postcode', t( 'You must enter a postcode.' ) );
+  }
+  else {
+    $postcode = $form_state['values']['postcode'];
+    if ( _postcode_is_real_postcode( $postcode ) ) {
+      $form_state['values']['postcode'] =
+        _postcode_clean_user_input( $postcode );
+    }
+    else {
+      form_set_error( 'postcode', t( 'The postcode you entered does not seem to be valid.' ) );
+    }
+  }
+
+  if ( ! empty( $form_state['values']['radius'] ) &&
+    ! is_numeric( $form_state['values']['radius'] )
+  ) {
+    set_form_error( 'radius', t( 'Radius must be a number. (You can leave it blank if you\'re not sure.)' ) );
+  }
+}
+
+function postcode_form_submit( $form, &$form_state ) {
+  _postcode_set_guest_postcode( $form_state['values']['postcode'] );
+  _postcode_set_guest_radius( $form_state['values']['radius'] );
+}
+

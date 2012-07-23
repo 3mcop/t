@@ -91,7 +91,7 @@
             <ul class="dropdown-menu">
               <li><a href="/user"><i class="icon-user"></i> Your profile</a></li>
               <li class="divider"></li>
-              <li><a href="/user"><i class="icon-map-marker"></i> Postcode radius: <span><?php print $postcode_radius ?></span></a></li>
+              <li><a href="/user/<?php print $user->uid; ?>/edit/main"><i class="icon-map-marker"></i> Postcode radius: <span><?php print $postcode_radius ?></span></a></li>
               <li class="divider"></li>
               <li><a href="/user/logout"><i class="icon-lock"></i> Log out</a></li>
             </ul>
@@ -109,7 +109,13 @@
           	<?php if ( empty( $postcode ) ): ?>
           		<a href="/">Where are you?</a>
           	<?php else: ?>
-          		<?php print $postcode; ?>
+          	
+          		<?php if (user_is_logged_in()): ?>
+          			<a href="/user/<?php print $user->uid; ?>/edit/main"><?php print $postcode; ?></a>
+          		<?php else: ?>
+          			<a href="/guest"><?php print $postcode; ?></a>
+          		<?php endif; ?>
+          		
           	<?php endif; ?>
 
           	</div>
@@ -276,7 +282,6 @@ if ( $lt_overlay['show it?'] ):
     			<div class="span12 join">
     				<h3><?php echo t('Join Localitee') ?></h3>
     				<div class="alert">
-    					<p><strong><?php echo t('Holy guacamole!') ?></strong> <?php echo t('Information about joining Localitee here!') ?></p>
     					<p><a href="/user/register" class="btn btn-success btn-large"><?php echo t('Join Localitee') ?></a></p>
     				</div>
     			</div>
