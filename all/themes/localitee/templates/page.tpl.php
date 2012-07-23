@@ -91,7 +91,7 @@
             <ul class="dropdown-menu">
               <li><a href="/user"><i class="icon-user"></i> Your profile</a></li>
               <li class="divider"></li>
-              <li><a href="/user"><i class="icon-map-marker"></i> Postcode radius: <span><?php print $postcode_radius ?></span></a></li>
+              <li><a href="/user/<?php print $user->uid; ?>/edit/main"><i class="icon-map-marker"></i> Postcode radius: <span><?php print $postcode_radius ?></span></a></li>
               <li class="divider"></li>
               <li><a href="/user/logout"><i class="icon-lock"></i> Log out</a></li>
             </ul>
