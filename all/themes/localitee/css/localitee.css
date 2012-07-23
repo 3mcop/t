@@ -34,6 +34,9 @@ float: right;
 #maincontent img
 {
 max-width: 100%;
+height: auto;
+padding: 2px;
+border: solid 1px #ccc;
 }
 
 img.alignleft, img.alignright
