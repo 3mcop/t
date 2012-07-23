@@ -111,7 +111,7 @@
           	<?php else: ?>
           	
           		<?php if (user_is_logged_in()): ?>
-          			<a href="/user"><?php print $postcode; ?></a>
+          			<a href="/user/<?php print $user->uid; ?>/edit/main"><?php print $postcode; ?></a>
           		<?php else: ?>
           			<a href="/guest"><?php print $postcode; ?></a>
           		<?php endif; ?>
