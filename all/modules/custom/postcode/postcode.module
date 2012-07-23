@@ -5,7 +5,7 @@
  * Manage the postcode of both authenticated and anonymous users.
  */
 
-define( "POSTCODE_DEFAULT_RADIUS_KM", 10 );
+define( "POSTCODE_DEFAULT_RADIUS_KM", 5 );
 
 function postcode_get_postcode() {
 
@@ -99,7 +99,7 @@ function _postcode_is_real_postcode( $pc ) {
   //dsm( $pc );
 
   // Use the short BS7666 schema regex to check that this is a postcode.
-  $pattern = '/[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}/';
+  $pattern = '/[A-Z]{1,2}[0-9R][0-9A-Z]? ?[0-9][ABD-HJLNP-UW-Z]{2}/';
   $matches = array();
   $num_matches = preg_match( $pattern, $pc, $matches );
   //dsm( 'num matches: ' . $num_matches );
@@ -170,7 +170,7 @@ function postcode_form( $form, &$form_state ) {
       '#type' => 'textfield',
       '#title' => t('Enter your postcode'),
       '#default_value' => postcode_get_postcode(),
-      '#attributes' => array( 'placeholder' => t('Enter postcode') ),
+      '#attributes' => array( 'placeholder' => t('Example: TF3 4HD') ),
     ),
     'radius' => array(
       '#type' => 'textfield',
