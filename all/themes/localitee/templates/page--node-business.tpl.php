@@ -149,12 +149,12 @@
             		<h1>Openspace</h1>
             		
             		<div class="business-logo">
-            			<img src="img/openspace-logo.png" alt="Logo: Openspace"/>
+            			<img src="/sites/all/themes/localitee/img/openspace-logo.png" alt="Logo: Openspace"/>
             		</div>
             
             		<p><b>OpenSpace is a members' co-operative. By managing our workspace ourselves, we can run an affordable, attractive office where different members and tenants carry out a variety of creative and socially conscious work.</b></p>
             		
-            		<img src="img/coopvan.jpg" alt="" class="alignleft"/>
+            		<img src="/sites/all/themes/localitee/img/coopvan.jpg" alt="" class="alignleft"/>
             		
             		<h3>Members and Tenants</h3>
             		<p>The space is used by a broad mix of people including:</p>
