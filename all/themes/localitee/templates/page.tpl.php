@@ -282,7 +282,6 @@ if ( $lt_overlay['show it?'] ):
     			<div class="span12 join">
     				<h3><?php echo t('Join Localitee') ?></h3>
     				<div class="alert">
-    					<p><strong><?php echo t('Holy guacamole!') ?></strong> <?php echo t('Information about joining Localitee here!') ?></p>
     					<p><a href="/user/register" class="btn btn-success btn-large"><?php echo t('Join Localitee') ?></a></p>
     				</div>
     			</div>
