@@ -84,3 +84,8 @@ function localitee_preprocess_search_results(&$variables) {
   $variables['localitee_search_totals'] = "Your search returned $total results";
 
 }
+
+// Output variables available to business node
+function localitee_preprocess_node( &$variables ) {
+  dsm ( $variables );
+}
