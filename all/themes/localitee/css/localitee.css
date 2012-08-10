@@ -838,19 +838,19 @@ border: solid 1px #ccc;
 background: #fff;
 }
 
-.businessprofile h1
+.node-business h1
 {
 border-bottom: solid 1px #ccc;
 margin-bottom: 20px;
 padding-bottom: 5px;
 }
 
-.businessprofile h2
+.node-business h2
 {
 border-bottom: none;
 }
 
-.businessprofile .map
+.node-business .map
 {
 width: 302px;
 height: 302px;
@@ -859,7 +859,7 @@ padding: 2px;
 margin: 10px 0;
 }
 
-.businessprofile h4.marker
+.node-business h4.marker
 {
 padding: 0 0 0 30px;
 background: url('../img/icon-marker-green.png') no-repeat 2px 23px;
@@ -892,6 +892,11 @@ float: left;
 width: 50%;
 padding-left: 20px;
 border-left: solid 1px #ccc;
+}
+
+.contact-details li div
+{
+float: left;
 }
 
 .address
