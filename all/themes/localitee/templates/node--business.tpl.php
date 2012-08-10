@@ -94,15 +94,38 @@
     </div>
   <?php endif; ?>
 
-  <div class="content"<?php print $content_attributes; ?>>
     <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['comments']);
       hide($content['links']);
+      print render($content['field_business_logo']);
       print render($content['body']);
     ?>
-    hello!
-  </div>
+    
+    <h2>Contact details</h2>
+    <div class="address">
+    <?php print render($content['field_address']); ?>
+    <?php print render($content['field_company_no']); ?>
+    </div>
+    
+    <div class="contact-details">
+		<ul>
+	        <li class="phone"><span class="offscreen">Tel: </span><?php print render($content['field_phone_number']); ?></li>
+	        <li class="email"><span class="offscreen">Email: </span><?php print render($content['field_email']); ?></li>
+	        <li class="twitter"><a href=""><span class="offscreen">Twitter: </span><?php print render($content['field_twitter']); ?></a></li>
+	        <li class="facebook"><?php print render($content['field_facebook']); ?></li>
+	        <li class="website"><?php print render($content['field_website']); ?></li>
+	    </ul>
+	</div>
+
+	<h4 class="marker">Get directions to Openspace on Google Maps</h4>
+		<div class="map">
+			<?php print render($content['field_geolocation']); ?>
+			
+		</div>
+    
+    
+
 
   <?php print render($content['links']); ?>
 
