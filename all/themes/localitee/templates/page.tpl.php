@@ -157,7 +157,7 @@
       
       <div class="row-fluid" id="maincontent" role="main">
       
-      <?php if ( isset($node) && $node->type == 'business' ) ) : ?>
+      <?php if ( isset($node) && $node->type == 'business' ) : ?>
       
       	<span class="span12">
       
