@@ -829,6 +829,11 @@ color: #78ae39;
 float: right;
 }
 
+.field-name-field-business-logo .field-label, .field-name-field-geolocation field-label
+{
+display: none;
+}
+
 .business-logo
 {
 float: right;
@@ -859,6 +864,7 @@ margin: 10px 0;
 
 .node-business h4.marker
 {
+color: #545454 !important;
 padding: 0 0 0 30px;
 background: url('../img/icon-marker-green.png') no-repeat 2px 23px;
 margin-bottom: 5px;
