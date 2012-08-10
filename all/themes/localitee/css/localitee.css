@@ -899,6 +899,11 @@ border-left: solid 1px #ccc;
 float: left;
 }
 
+.contact-details li div.field-label
+{
+display: none;
+}
+
 .address
 {
 width: 40%;

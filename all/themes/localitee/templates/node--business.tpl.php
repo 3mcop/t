@@ -110,9 +110,9 @@
     
     <div class="contact-details">
 		<ul>
-	        <li class="phone"><span class="offscreen">Tel: </span><?php print render($content['field_phone_number']); ?></li>
-	        <li class="email"><span class="offscreen">Email: </span><?php print render($content['field_email']); ?></li>
-	        <li class="twitter"><a href=""><span class="offscreen">Twitter: </span><?php print render($content['field_twitter']); ?></a></li>
+	        <li class="phone"><?php print render($content['field_phone_number']); ?></li>
+	        <li class="email"><?php print render($content['field_email']); ?></li>
+	        <li class="twitter"><?php print render($content['field_twitter']); ?></a></li>
 	        <li class="facebook"><?php print render($content['field_facebook']); ?></li>
 	        <li class="website"><?php print render($content['field_website']); ?></li>
 	    </ul>
