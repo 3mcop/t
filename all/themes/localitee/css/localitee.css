@@ -829,7 +829,7 @@ color: #78ae39;
 float: right;
 }
 
-.field-name-field-business-logo .field-label, .field-name-field-geolocation field-label
+.field-name-field-business-logo .field-label, .field-name-field-geolocation .field-label
 {
 display: none;
 }
