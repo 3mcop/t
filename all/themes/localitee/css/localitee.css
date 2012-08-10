@@ -651,7 +651,7 @@ list-style-type: none;
 padding: 0 0 0 30px;
 }
 
-.events ul li, .business ul li, .discussion ul li
+.events ul li, .business ul li, .discussion ul li, .view-recent-discussions ul li
 {
 list-style-type: none;
 padding: 0 0 0 40px;
@@ -673,7 +673,7 @@ background: url('../img/icon-calendar.png') no-repeat 2px 2px;
 background: url('../img/icon-credit.png') no-repeat 2px 2px;
 }
 
-.discussion ul li
+.discussion ul li, .view-recent-discussions ul li
 {
 background: url('../img/icon-discussion.png') no-repeat 2px 2px;
 }
