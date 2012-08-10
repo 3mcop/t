@@ -894,11 +894,6 @@ padding-left: 20px;
 border-left: solid 1px #ccc;
 }
 
-.contact-details li div.field-items
-{
-float: left;
-}
-
 .contact-details li div.field-label
 {
 display: none;
