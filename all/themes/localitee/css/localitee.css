@@ -824,6 +824,17 @@ color: #78ae39;
 
 /* business page logo */
 
+.field-name-field-business-logo
+{
+float: right;
+margin: 0 0 10px 10px;
+}
+
+.field-name-field-business-logo .field-label, .field-name-field-geolocation .field-label
+{
+display: none;
+}
+
 .business-logo
 {
 float: right;
@@ -833,29 +844,28 @@ border: solid 1px #ccc;
 background: #fff;
 }
 
-.businessprofile h1
+.node-business h1
 {
 border-bottom: solid 1px #ccc;
 margin-bottom: 20px;
 padding-bottom: 5px;
 }
 
-.businessprofile h2
+.node-business h2
 {
-border-bottom: none;
+margin-top: 20px;
 }
 
-.businessprofile .map
+.node-business .map
 {
-width: 302px;
-height: 302px;
 border: solid 1px #ccc;
 padding: 2px;
 margin: 10px 0;
 }
 
-.businessprofile h4.marker
+.node-business h4.marker
 {
+color: #545454 !important;
 padding: 0 0 0 30px;
 background: url('../img/icon-marker-green.png') no-repeat 2px 23px;
 margin-bottom: 5px;
@@ -887,6 +897,11 @@ float: left;
 width: 50%;
 padding-left: 20px;
 border-left: solid 1px #ccc;
+}
+
+.contact-details li div.field-label
+{
+display: none;
 }
 
 .address

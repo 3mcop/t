@@ -156,15 +156,38 @@
       </div><!-- /.row-fluid -->
       
       <div class="row-fluid" id="maincontent" role="main">
-          
+      
+      <?php if ( isset($node) && $node->type == 'business' ) : ?>
+      
+      	<span class="span12">
+      
+           <div class="box">
+              	<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+              	<?php if ($page['content_top']): ?>
+                        	
+	            	<?php print render($page['content_top']); ?>         	
+            		               	
+	            <?php endif; ?>
+              	<?php print render($page['content']); ?>
+           </div>
+              		
+      	</span>	
+      
+      <?php else: ?>
+
+
             <div class="span8">
 
                <?php // Added these tabs back because they are needed to administer nodes (edit/delete/clone/etc).
                if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>            
             
-               <?php if (drupal_is_front_page()): ?>
+               <?php
+               // check to see if this is the front page
+               if (drupal_is_front_page()): ?>
             
-               		<?php if ($page['content_top']): ?>
+               		<?php
+               		// if content_top content type exists
+               		 if ($page['content_top']): ?>
             
                		<div class="col2box">
             	
@@ -196,7 +219,9 @@
 		            
 		            </div><!-- /.box -->
 
-		      <?php else: ?>          
+		      <?php
+		      // else if not the home page
+		      else: ?>          
               
               		<div class="box">
               			<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
@@ -218,7 +243,10 @@
 	          	<?php print render($page['sidebar_first']); ?>
 	          <?php endif; ?>	            
 	            
-            </div><!-- /.span4 -->            
+            </div><!-- /.span4 -->
+
+      <?php endif; ?>
+       
             
       </div><!-- /.row-fluid -->
 
