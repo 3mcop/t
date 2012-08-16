@@ -85,7 +85,7 @@ function localitee_preprocess_search_results(&$variables) {
 
 }
 
-// Output variables available to business node
-function localitee_preprocess_node( &$variables ) {
-  dsm ( $variables );
-}
+// Output variables available to current node
+//function localitee_preprocess_node( &$variables ) {
+  //dsm ( $variables );
+//}
