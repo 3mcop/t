@@ -45,14 +45,14 @@ function lt_misc_views_query_alter( &$view, &$query ) {
 // behaviour under such circumstances may be to exclude the filter altogether.
 // Whatever the reason, we need to find out why it's happening and find an
 // alternative.
-return;
+//return;
 
 
   // Use the presence of a filter called 'flat' to determine whether there
   // is a proximity filter that we can modify.
   if ( ! empty($view->filter['flat']) ) {
 
-dsm( $view->filter );
+    //dsm( $view->filter['flat'] );
 
     $latlon = postcode_get_latlon();
     //dsm( $latlon );
@@ -73,7 +73,7 @@ dsm( $view->filter );
     // Just being paranoid here. Could views rely on the array pointer
     // being in a particular position? Unlikely.
     $conditions = &$query->where[1]['conditions'];
-    dsm( $conditions );
+    //dsm( $conditions );
     $initial_pos = key( $conditions );
 
     // Get a reference to the last element of the conditions array, cus
@@ -84,13 +84,13 @@ dsm( $view->filter );
 
     // Set the geobounds for the view query to those for the current user
     // settings.
-    dsm( $conditions[$last_pos]['field'] );
+    //dsm( $conditions[$last_pos]['field'] );
     $conditions[$last_pos]['field'] =
       '(openlayers_proximity.lat <= ' . $bounds['north'] .
       ' AND openlayers_proximity.lat >= ' . $bounds['south'] .
       ' AND openlayers_proximity.lon >= ' . $bounds['west'] .
       ' AND openlayers_proximity.lon <= ' . $bounds['east'] . ')';
-    dsm( $conditions[$last_pos]['field'] );
+    //dsm( $conditions[$last_pos]['field'] );
 
     // Finishing off our paranoid treatment of the array pointer.
     _lt_misc_set_array_pointer( $conditions, $initial_pos );
