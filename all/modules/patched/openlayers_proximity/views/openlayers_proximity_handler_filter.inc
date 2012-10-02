@@ -337,11 +337,42 @@ class openlayers_proximity_handler_filter extends views_handler_filter_numeric {
    */
   function process_location_proximity() {
     $this->value['lat'] = $this->value['lon'] = NULL;
-    if ($this->response = openlayers_proximity_geocode($this->value['location'])) {
+    $lat_lon = $this->extract_lat_lon( $this->value['location'] );
+
+    if ( $lat_lon ) {
+      $this->value['lat']  = $lat_lon['lat'];
+      $this->value['lon']  = $lat_lon['lon'];
+      // Views filter handlers that extend this filter test $this->response
+      // before using $this->value
+      $this->response = TRUE;
+    }
+    elseif ($this->response = openlayers_proximity_geocode($this->value['location'])) {
       $this->value['lat']  = $this->response[0]['location']['lat'];
       $this->value['lon']  = $this->response[0]['location']['lng'];
     }
     drupal_alter('process_location_proximity', $this->value);
+  }
+
+  /**
+   * Extract latitude and longitude, if possible, from a location string.
+   *
+   * @param $location
+   *   The string that may contain a coordinate pair.
+   *
+   * @return
+   *   On success array(latitude,longitude), else NULL.
+   */
+  function extract_lat_lon( $location ) {
+    $pattern = '#^[^.\-+\d]*([.\-+\d]+)[^.\-+\d]*([.\-+\d]+)[^.\-+\d]*$#';
+    $matches = array();
+    $success = preg_match( $pattern, $location, $matches );
+
+    if ( $success && is_numeric($matches[1]) && is_numeric($matches[2]) ) {
+      return array( 'lat' => $matches[1], 'lon' => $matches[2] );
+    }
+    else {
+      return NULL;
+    }
   }
 
   function secure_input() {
