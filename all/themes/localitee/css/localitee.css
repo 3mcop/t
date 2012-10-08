@@ -831,6 +831,12 @@ max-width: 400px;
 height: auto;
 }
 
+.ie.ie8 .field-name-field-business-logo
+{
+width: 400px;
+height: auto;
+}
+
 .field-name-field-business-logo .field-label, .field-name-field-geolocation .field-label
 {
 display: none;
