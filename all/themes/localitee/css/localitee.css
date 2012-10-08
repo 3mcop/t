@@ -833,7 +833,7 @@ height: auto;
 
 .ie.ie8 .field-name-field-business-logo
 {
-width: 400px;
+max-width: 100%;
 height: auto;
 }
 
