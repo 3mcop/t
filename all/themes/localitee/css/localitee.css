@@ -825,6 +825,10 @@ color: #78ae39;
 
 .field-name-field-business-logo
 {
+float: right;
+margin: 0 0 10px 10px;
+max-width: 400px;
+height: auto;
 }
 
 .field-name-field-business-logo .field-label, .field-name-field-geolocation .field-label
