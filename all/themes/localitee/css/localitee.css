@@ -715,7 +715,7 @@ background: url('../img/icon-document-small.png') no-repeat 2px 2px;
 
 .item-list ul li 
 {
-margin: 0 !important;
+margin: 0 0 20px 0 !important;
 }
 
 .views-row
