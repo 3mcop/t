@@ -118,7 +118,7 @@
 	    </ul>
 	</div>
 
-	<h4 class="marker">Get directions to Openspace on Google Maps</h4>
+	<h4 class="marker">Get directions to <?php print $title; ?> on Google Maps</h4>
 		<div class="map">
 			<?php print render($content['field_geolocation']); ?>
 			
