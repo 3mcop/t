@@ -833,8 +833,7 @@ height: auto;
 
 .ie.ie8 .field-name-field-business-logo
 {
-max-width: 100%;
-height: auto;
+float: none !important;
 }
 
 .field-name-field-business-logo .field-label, .field-name-field-geolocation .field-label
