@@ -934,6 +934,11 @@ background: url('../img/icon-facebook-green.png') no-repeat 2px 2px;
 background: url('../img/icon-link-green.png') no-repeat 2px 2px;
 }
 
+.field-name-field-news-image
+{
+margin-bottom: 20px;
+}
+
 /* CSS fixes to remove erroneous content */
 
 #myCarousel #block-system-main
