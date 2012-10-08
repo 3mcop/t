@@ -717,6 +717,7 @@ background: url('../img/icon-document-small.png') no-repeat 2px 2px;
 {
 margin: 0 0 10px 0;
 border-bottom: dotted 1px #ccc;
+padding-bottom: 10px;
 }
 
 .views-row
