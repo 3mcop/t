@@ -937,7 +937,7 @@ background: url('../img/icon-facebook-green.png') no-repeat 2px 2px;
 background: url('../img/icon-link-green.png') no-repeat 2px 2px;
 }
 
-.field-name-field-news-image
+.field-name-field-news-image. .field-name-field-event-image, .field-name-field-discussion-image
 {
 margin-bottom: 20px;
 }
