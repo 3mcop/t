@@ -18,7 +18,16 @@ function lt_overlay_menu() {
 }
 
 function _lt_guest_options_page() {
-  return drupal_get_form( 'postcode_form' );
+  global $user;
+
+  // Is the current user logged in?
+  if ( $user->uid > 0 ) {
+    // Got to the page for editing postcode anbd radius settings.
+    drupal_goto( 'user/' . $user->uid . '/edit/main' );
+  }
+  else {
+    return drupal_get_form( 'postcode_form' );
+  }
 }
 
 function lt_overlay_should_show() {
