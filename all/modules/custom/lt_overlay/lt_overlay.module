@@ -9,7 +9,13 @@ function lt_overlay_menu() {
   return array(
     'guest' => array(
       'description' => 'Options for guests',
-      'access callback' => 'user_is_anonymous',
+      'title' => 'Guest options',
+      'access callback' => TRUE,
+      'page callback' => '_lt_guest_options_page',
+      'type' => MENU_NORMAL_ITEM,
+    ),
+    'guest2' => array(
+      'description' => 'Options for guests',
       'title' => 'Guest options',
       'page callback' => '_lt_guest_options_page',
       'type' => MENU_NORMAL_ITEM,
@@ -18,12 +24,14 @@ function lt_overlay_menu() {
 }
 
 function _lt_guest_options_page() {
+
   global $user;
 
   // Is the current user logged in?
   if ( $user->uid > 0 ) {
     // Got to the page for editing postcode anbd radius settings.
-    drupal_goto( 'user/' . $user->uid . '/edit/main' );
+    $url = 'user/' . $user->uid . '/edit/main';
+    drupal_goto( $url );
   }
   else {
     return drupal_get_form( 'postcode_form' );
